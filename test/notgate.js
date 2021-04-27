@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const NotGate = require('../src/logicmodule/notgate');
+const NotGate = require('../notgate');
 
 var assert = require('assert/strict');
 

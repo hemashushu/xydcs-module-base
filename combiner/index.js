@@ -1,4 +1,4 @@
-const AbstractLogicModule = require('../abstractlogicmodule');
+const {AbstractLogicModule} = require('jslogiccircuit');
 
 /**
  * 连接线组合器

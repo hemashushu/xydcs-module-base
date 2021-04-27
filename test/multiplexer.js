@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const Multiplexer = require('../src/logicmodule/multiplexer');
+const Multiplexer = require('../multiplexer');
 
 var assert = require('assert/strict');
 

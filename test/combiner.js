@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const Combiner = require('../src/logicmodule/combiner');
+const Combiner = require('../combiner');
 
 var assert = require('assert/strict');
 

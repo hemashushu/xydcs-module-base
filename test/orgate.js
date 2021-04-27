@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const OrGate = require('../src/logicmodule/orgate');
+const OrGate = require('../orgate');
 
 var assert = require('assert/strict');
 

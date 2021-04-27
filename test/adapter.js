@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const Adapter = require('../src/logicmodule/adapter');
+const Adapter = require('../adapter');
 
 var assert = require('assert/strict');
 

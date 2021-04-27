@@ -1,6 +1,6 @@
 const { Binary } = require('jsbinary');
 
-const Register = require('../src/logicmodule/register');
+const Register = require('../register');
 
 var assert = require('assert/strict');
 

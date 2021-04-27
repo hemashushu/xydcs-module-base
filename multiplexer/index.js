@@ -1,6 +1,5 @@
 const { Binary } = require('jsbinary');
-
-const AbstractLogicModule = require('../abstractlogicmodule');
+const {AbstractLogicModule} = require('jslogiccircuit');
 
 /**
  * 多路复用器
