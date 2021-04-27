@@ -1,0 +1,30 @@
+{
+  "name": "yuemu-base-logic-module/",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hemashushu/yuemu-base-logic-module/.git"
+  },
+  "keywords": [
+    "digital",
+    "circuit",
+    "logic"
+  ],
+  "author": "hippospark@gmail.com",
+  "license": "SEE LICENSE IN <LICENSE.md>",
+  "bugs": {
+    "url": "https://github.com/hemashushu/yuemu-base-logic-module/issues"
+  },
+  "homepage": "https://github.com/hemashushu/yuemu-base-logic-module/",
+  "devDependencies": {
+    "mocha": "^8.3.2"
+  },
+  "dependencies": {
+    "jsbinary": "github:hemashushu/jsbinary"
+  }
+}
