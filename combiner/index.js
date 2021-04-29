@@ -21,7 +21,7 @@ class Combiner extends AbstractLogicModule {
     /**
      *
      * @param {*} name 模块名称
-     * @param {*} sourceDataWidths 各个源数据的宽度之集合，比如
+     * @param {*} sourceBitWidths 各个源数据的宽度之集合，比如
      *     [2,3,4] 表示有 3 路输入，各线路的数据宽度分别是 2，3，4。
      *     它们将会合并为一个宽度为 9 的输出线。
      *     相当于 Verilog 的 assign wire [8:0] out = {in0, in1, in2};
@@ -29,19 +29,19 @@ class Combiner extends AbstractLogicModule {
      *     会被合并到输出线的最低位。比如 in1 = 0b11, in2 = 0b000, in3 = 0b1010，
      *     会被合并为 0b110001010
      */
-    constructor(name, sourceDataWidths) {
+    constructor(name, sourceBitWidths) {
         super(name, {
-            sourceDataWidths: sourceDataWidths
+            sourceBitWidths: sourceBitWidths
         });
 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
-        let dataWidth = sourceDataWidths.reduce((accumulator, currentValue) => accumulator + currentValue);
-        let outputWire = this.addOutputWire('out', dataWidth);
+        let bitWidth = sourceBitWidths.reduce((accumulator, currentValue) => accumulator + currentValue);
+        let outputWire = this.addOutputWire('out', bitWidth);
 
         // 输入线的名称分别为 in0, in1, ... inN
         let createInputWire = (idx, targetDataOffset) => {
-            let sourceDataWidth = sourceDataWidths[idx];
-            let inputWire = this.addInputWire('in' + idx, sourceDataWidth);
+            let sourceBitWidth = sourceBitWidths[idx];
+            let inputWire = this.addInputWire('in' + idx, sourceBitWidth);
 
             inputWire.addListener(data => {
                 let outputData = outputWire.data;
@@ -50,10 +50,10 @@ class Combiner extends AbstractLogicModule {
             });
         };
 
-        let targetDataWidths = 0;
-        for (let idx = 0; idx < sourceDataWidths.length; idx++) {
-            targetDataWidths += sourceDataWidths[idx]; // 增加数据偏移值
-            let targetDataOffset = dataWidth - targetDataWidths;
+        let targetBitWidths = 0;
+        for (let idx = 0; idx < sourceBitWidths.length; idx++) {
+            targetBitWidths += sourceBitWidths[idx]; // 增加数据偏移值
+            let targetDataOffset = bitWidth - targetBitWidths;
             createInputWire(idx, targetDataOffset);
         }
     }

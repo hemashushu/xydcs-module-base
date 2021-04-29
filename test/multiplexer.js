@@ -16,7 +16,7 @@ describe('Multiplexer Test', () => {
         let inputWire3 = m1.getInputWire('in3');
         let outputWire = m1.getOutputWire('out');
 
-        assert.equal(outputWire.dataWidth, 4);
+        assert.equal(outputWire.bitWidth, 4);
         assert(Binary.equals(outputWire.data, Binary.fromBinaryString('0000', 4)));
 
         let data0 = Binary.fromBinaryString('1000', 4);

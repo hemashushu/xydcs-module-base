@@ -14,7 +14,7 @@ describe('And Gate Test', () => {
         let inputWire1 = a1.getInputWire('in1');
         let outputWire = a1.getOutputWire('out');
 
-        assert.equal(outputWire.dataWidth, 1);
+        assert.equal(outputWire.bitWidth, 1);
         assert.equal(outputWire.data.value, 0);
 
         let data0 = Binary.fromBinaryString('0', 1);

@@ -11,8 +11,8 @@ describe('Register Test', () => {
         let inputWire = r1.getInputWire('in');
         let outputWire = r1.getOutputWire('out');
 
-        assert.equal(inputWire.dataWidth, 4);
-        assert.equal(outputWire.dataWidth, 4);
+        assert.equal(inputWire.bitWidth, 4);
+        assert.equal(outputWire.bitWidth, 4);
 
         let b0 = Binary.fromBinaryString('0000', 4);
         assert(Binary.equals(outputWire.data, b0));

@@ -1,5 +1,5 @@
 {
-  "name": "yuemu-module-base",
+  "name": "ycemu-module-base",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,19 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hemashushu/yuemu-module-base.git"
+    "url": "git+https://github.com/hemashushu/ycemu-module-base.git"
   },
   "keywords": [
     "digital",
     "circuit",
     "logic"
   ],
-  "author": "hippospark@gmail.com",
+  "author": "Hippo Spark <hippospark@gmail.com> (https://twitter.com/hemashushu)",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "bugs": {
-    "url": "https://github.com/hemashushu/yuemu-module-base/issues"
+    "url": "https://github.com/hemashushu/ycemu-module-base/issues"
   },
-  "homepage": "https://github.com/hemashushu/yuemu-module-base",
+  "homepage": "https://github.com/hemashushu/ycemu-module-base",
   "devDependencies": {
     "mocha": "^8.3.2"
   },

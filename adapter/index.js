@@ -1,37 +1,36 @@
-const {AbstractLogicModule} = require('jslogiccircuit');
+const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+const {Binary} = require('jsbinary');
 
 /**
  * 连接线适配器
  *
  * 只连接上一个连接线部分（宽度）数据。
- * 即 wire [targetDataWidth - 1:0] target = source[targetDataWidth + dataOffset - 1:dataOffset]
+ * 即 wire [targetBitWidth - 1:0] target = source[targetBitWidth + dataOffset - 1:dataOffset]
  */
-class Adapter extends AbstractLogicModule {
+class Adapter extends AbstractBaseLogicModule {
 
-    /**
-     *
-     * @param {*} name 模块名称
-     * @param {*} dataWidth 输出数据的宽度
-     * @param {*} sourceDataWidth 源数据宽度
-     * @param {*} sourceDataOffset 源数据偏移值
-     */
-    constructor(name, dataWidth, sourceDataWidth, sourceDataOffset) {
-        super(name, {
-            dataWidth: dataWidth,
-            sourceDataWidth: sourceDataWidth,
-            sourceDataOffset: sourceDataOffset
-        });
+    constructor(name, parameters) {
+        super(name, parameters);
 
-        let outputWire = this.addOutputWire('out', dataWidth);
-        let inputWire = this.addInputWire('in', sourceDataWidth);
+        let bitWidth = parameters.bitWidth; // 输出数据的宽度
+        let sourceBitWidth = parameters.sourceBitWidth; // 源数据宽度
+        let sourceBitOffset = parameters.sourceBitOffset; // 源数据偏移值
+
+        let outputWire = this.addOutputWire('out', bitWidth);
+
+        let inputWire = this.addInputWire('in', sourceBitWidth);
 
         inputWire.addListener(data => {
-            let partialData = data.getBits(sourceDataOffset, dataWidth);
-            outputWire.setData(partialData);
+            let partialData = data.getBits(sourceBitOffset, bitWidth);
+            if (!Binary.equals(partialData, outputWire.data)) {
+                outputWire.setData(partialData);
+            }
         });
     }
-}
 
-Adapter.className = 'adapter'
+    getModuleClassName() {
+        return 'adapter'; // 同目录名
+    }
+}
 
 module.exports = Adapter;

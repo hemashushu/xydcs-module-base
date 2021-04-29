@@ -9,24 +9,24 @@ class Multiplexer extends AbstractLogicModule {
     /**
      *
      * @param {*} name 模块名称
-     * @param {*} dataWidth 数据宽度
+     * @param {*} bitWidth 数据宽度
      * @param {*} controlWireDataWidth 控制信号的数据宽度，
      *     输入线的数量为 2^controlWireDataWidth，例如
      *     当控制线宽度为 2 时，输入线数量为 2^2=4，
      *     当控制线宽度为 4 时，输入线的数量为 2^4=8
      */
-    constructor(name, dataWidth, controlWireDataWidth) {
+    constructor(name, bitWidth, controlWireDataWidth) {
         super(name, {
-            dataWidth: dataWidth,
+            bitWidth: bitWidth,
             controlWireDataWidth: controlWireDataWidth
         });
 
         let sourceWireCount = 2 ** controlWireDataWidth;
-        let outputWire = this.addOutputWire('out', dataWidth);
+        let outputWire = this.addOutputWire('out', bitWidth);
 
         let buildInputWire = (idx) => {
             // 输入线的名称分别为 in0, in1, ... inN
-            let inputWire = this.addInputWire('in' + idx, dataWidth);
+            let inputWire = this.addInputWire('in' + idx, bitWidth);
 
             inputWire.addListener(data => {
                 if (controlWire.data.value === idx) {

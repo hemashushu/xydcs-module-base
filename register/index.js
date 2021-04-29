@@ -12,18 +12,18 @@ const {AbstractLogicModule} = require('jslogiccircuit');
  */
 class Register extends AbstractLogicModule {
 
-    constructor(name, dataWidth) {
+    constructor(name, bitWidth) {
         super(name, {
-            dataWidth: dataWidth
+            bitWidth: bitWidth
         });
 
         // 用于临时存放上一个连接线传递过来的数值，当
         // 时钟信号到来时，再把临时数值更新到当前连接线。
-        this.tempData = new Binary(0, dataWidth);
+        this.tempData = new Binary(0, bitWidth);
 
-        this.addOutputWire('out', dataWidth);
+        this.addOutputWire('out', bitWidth);
 
-        let inputWire = this.addInputWire('in', dataWidth);
+        let inputWire = this.addInputWire('in', bitWidth);
 
         inputWire.addListener(data => {
             this.tempData.update(data);

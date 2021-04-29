@@ -15,7 +15,7 @@ describe('Combiner Test', () => {
         let inputWire2 = c1.getInputWire('in2');
         let outputWire = c1.getOutputWire('out');
 
-        assert.equal(outputWire.dataWidth, 9);
+        assert.equal(outputWire.bitWidth, 9);
         assert(Binary.equals(outputWire.data, Binary.fromBinaryString('000000000', 9)));
 
         let data0 = Binary.fromBinaryString('11', 2);
