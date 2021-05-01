@@ -6,13 +6,19 @@ var assert = require('assert/strict');
 
 describe('And Gate Test', () => {
     it('2 inputs', () => {
-        let a1 = new AndGate('andGate1', 2);
+        let a1 = new AndGate('andGate1', {
+            inputWireCount: 2,
+            bitWidth: 1
+        });
 
         assert.equal(a1.inputWires.length, 2);
 
         let inputWire0 = a1.getInputWire('in0');
         let inputWire1 = a1.getInputWire('in1');
         let outputWire = a1.getOutputWire('out');
+
+        assert.equal(inputWire0.bitWidth, 1);
+        assert.equal(inputWire1.bitWidth, 1);
 
         assert.equal(outputWire.bitWidth, 1);
         assert.equal(outputWire.data.value, 0);
@@ -38,7 +44,10 @@ describe('And Gate Test', () => {
     });
 
     it('4 inputs', () => {
-        let a1 = new AndGate('andGate1', 4);
+        let a1 = new AndGate('andGate1', {
+            inputWireCount: 4,
+            bitWidth: 1
+        });
 
         assert.equal(a1.inputWires.length, 4);
 
@@ -72,4 +81,22 @@ describe('And Gate Test', () => {
         inputWire1.setData(data0);
         assert.equal(outputWire.data.value, 0);
     });
+
+    it('Multiple bit widths', () => {
+        let a1 = new AndGate('andGate1', {
+            inputWireCount: 2,
+            bitWidth: 4
+        });
+
+        let inputWire0 = a1.getInputWire('in0');
+        let inputWire1 = a1.getInputWire('in1');
+        let outputWire = a1.getOutputWire('out');
+
+        assert.equal(inputWire0.bitWidth, 4);
+        assert.equal(inputWire1.bitWidth, 4);
+
+        assert.equal(outputWire.bitWidth, 4);
+        assert.equal(outputWire.data.value, 0);
+        // TODO::
+    })
 });

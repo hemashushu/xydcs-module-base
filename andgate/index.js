@@ -1,38 +1,33 @@
+const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 const {Binary} = require('jsbinary');
-const {AbstractLogicModule} = require('jslogiccircuit');
 
 /**
  * 逻辑与门
  */
-class AndGate extends AbstractLogicModule {
+class AndGate extends AbstractBaseLogicModule {
 
-    /**
-     *
-     * @param {*} name
-     * @param {*} inputWireCount 输入线的数量
-     */
-    constructor(name, inputWireCount) {
-        super(name, {
-            inputWireCount: inputWireCount
-        });
+    constructor(name, parameters) {
+        super(name, parameters);
 
-        let outputWire = this.addOutputWire('out', 1);
+        // 模块参数
+        let inputWireCount = parameters.inputWireCount; // 输入线的数量
+        let bitWidth = parameters.bitWidth; // 数据宽度
+
+        let outputWire = this.addOutputWire('out', bitWidth);
 
         // 输入线的名称分别为 in0, in1, ... inN
         let createInputWire = (idx) => {
-            let inputWire = this.addInputWire('in' + idx, 1);
+            let inputWire = this.addInputWire('in' + idx, bitWidth);
 
             inputWire.addListener(() => {
-                let result = 1
-                for(let inputWire of this.inputWires) {
-                    if (inputWire.data.getBit(0) === 0) {
-                        result = 0;
-                        break;
-                    }
+                let outputData = this.inputWires[0].data;
+                for(let idx=1; idx<this.inputWires.length; idx++) {
+                    outputData = Binary.and(outputData, this.inputWires[idx].data);
                 }
 
-                let outputData = new Binary(result, 1);
-                outputWire.setData(outputData);
+                if (!Binary.equals(outputData, outputWire.data)) {
+                    outputWire.setData(outputData);
+                }
             });
         };
 
@@ -41,8 +36,11 @@ class AndGate extends AbstractLogicModule {
             createInputWire(idx);
         }
     }
+
+    getModuleClassName() {
+        return 'andgate'; // 同目录名
+    }
 }
 
-AndGate.className = 'andGate';
 
 module.exports = AndGate;

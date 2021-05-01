@@ -1,0 +1,9 @@
+title: Wire Combiner
+title[zh_CN]: 连接线组合器
+description: Combine multiple wire into one wire
+description[zh_CN]: 合并多条连接线为一根连接线
+iconFilename: icon.png
+defaultParameters:
+  sourceBitWidths:
+    - 1
+    - 1

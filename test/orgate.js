@@ -6,13 +6,19 @@ var assert = require('assert/strict');
 
 describe('Or Gate Test', () => {
     it('2 inputs', () => {
-        let g1 = new OrGate('orGate1', 2);
+        let g1 = new OrGate('orGate1', {
+            bitWidth: 1,
+            inputWireCount:2
+        });
 
         assert.equal(g1.inputWires.length, 2);
 
         let inputWire0 = g1.getInputWire('in0');
         let inputWire1 = g1.getInputWire('in1');
         let outputWire = g1.getOutputWire('out');
+
+        assert.equal(inputWire0.bitWidth, 1);
+        assert.equal(inputWire1.bitWidth, 1);
 
         assert.equal(outputWire.bitWidth, 1);
         assert.equal(outputWire.data.value, 0);
@@ -38,7 +44,10 @@ describe('Or Gate Test', () => {
     });
 
     it('4 inputs', () => {
-        let g1 = new OrGate('orGate1', 4);
+        let g1 = new OrGate('orGate1', {
+            bitWidth: 1,
+            inputWireCount:4
+        });
 
         assert.equal(g1.inputWires.length, 4);
 
@@ -74,5 +83,24 @@ describe('Or Gate Test', () => {
 
         inputWire3.setData(data0);
         assert.equal(outputWire.data.value, 0);
+    });
+
+    it('Multiple bit widths', () => {
+        let g1 = new OrGate('orGate1', {
+            bitWidth: 4,
+            inputWireCount:2
+        });
+
+        let inputWire0 = g1.getInputWire('in0');
+        let inputWire1 = g1.getInputWire('in1');
+        let outputWire = g1.getOutputWire('out');
+
+        assert.equal(inputWire0.bitWidth, 4);
+        assert.equal(inputWire1.bitWidth, 4);
+
+        assert.equal(outputWire.bitWidth, 4);
+        assert.equal(outputWire.data.value, 0);
+
+        // TODO::
     });
 });

@@ -1,37 +1,38 @@
-const {AbstractLogicModule} = require('jslogiccircuit');
+const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+const {Binary} = require('jsbinary');
 
 /**
  * 逻辑或门
  */
-class OrGate extends AbstractLogicModule {
+class OrGate extends AbstractBaseLogicModule {
 
     /**
      *
      * @param {*} name
-     * @param {*} inputWireCount 输入线的数量
+     * @param {*}
      */
-    constructor(name, inputWireCount) {
-        super(name, {
-            inputWireCount: inputWireCount
-        });
+    constructor(name, parameters) {
+        super(name, parameters);
 
-        let outputWire = this.addOutputWire('out', 1);
+        // 模块参数
+        let bitWidth = parameters.bitWidth; // 数据宽度
+        let inputWireCount = this.parameters.inputWireCount; // 输入线的数量
+
+        let outputWire = this.addOutputWire('out', bitWidth);
 
         let createInputWire = (idx) => {
-            let inputWire = this.addInputWire('in' + idx, 1);
+            let inputWire = this.addInputWire('in' + idx, bitWidth);
 
             inputWire.addListener(() => {
-                let result = 0
-                for(let inputUnit of this.inputWires) {
-                    if (inputUnit.data.getBit(0) === 1) {
-                        result = 1;
-                        break;
-                    }
+                let outputData = this.inputWires[0].data;
+                for(let idx=1; idx<this.inputWires.length; idx++) {
+                    outputData = Binary.or(outputData, this.inputWires[idx].data);
                 }
 
-                let outputData = outputWire.data;
-                outputData.setBit(0, result);
-                outputWire.setData(outputData);
+                if (!Binary.equals(outputData, outputWire.data)){
+                    outputWire.setData(outputData);
+                }
+
             });
         };
 
@@ -40,8 +41,10 @@ class OrGate extends AbstractLogicModule {
             createInputWire(idx);
         }
     }
-}
 
-OrGate.className = 'orGate';
+    getModuleClassName() {
+        return 'orgate'; // 同目录名
+    }
+}
 
 module.exports = OrGate;

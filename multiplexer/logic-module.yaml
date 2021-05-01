@@ -1,0 +1,9 @@
+title: Multiplexer
+title[zh_CN]: 多路复用器
+description: Select input channel by a control wire
+description[zh_CN]: 通过一条控制线来选择输入通道
+iconFilename: icon.png
+defaultParameters:
+  sourceBitWidths:
+    - bitWidth: 1
+    - controlWireBitWidth: 2

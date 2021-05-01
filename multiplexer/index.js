@@ -1,27 +1,26 @@
-const { Binary } = require('jsbinary');
-const {AbstractLogicModule} = require('jslogiccircuit');
+const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+const {Binary} = require('jsbinary');
 
 /**
  * 多路复用器
  *
  */
-class Multiplexer extends AbstractLogicModule {
-    /**
-     *
-     * @param {*} name 模块名称
-     * @param {*} bitWidth 数据宽度
-     * @param {*} controlWireDataWidth 控制信号的数据宽度，
-     *     输入线的数量为 2^controlWireDataWidth，例如
-     *     当控制线宽度为 2 时，输入线数量为 2^2=4，
-     *     当控制线宽度为 4 时，输入线的数量为 2^4=8
-     */
-    constructor(name, bitWidth, controlWireDataWidth) {
-        super(name, {
-            bitWidth: bitWidth,
-            controlWireDataWidth: controlWireDataWidth
-        });
+class Multiplexer extends AbstractBaseLogicModule {
 
-        let sourceWireCount = 2 ** controlWireDataWidth;
+    constructor(name, parameters){
+        super(name, parameters);
+
+        // 模块参数
+        let bitWidth = parameters.bitWidth; // 数据宽度
+        let controlWireBitWidth = parameters.controlWireBitWidth; // 控制信号的数据宽度
+
+        // controlWireBitWidth:
+        //
+        // 输入线的数量为 2^controlWireDataWidth，例如
+        // 当控制线宽度为 2 时，输入线数量为 2^2=4，
+        // 当控制线宽度为 4 时，输入线的数量为 2^4=8
+
+        let sourceWireCount = 2 ** controlWireBitWidth;
         let outputWire = this.addOutputWire('out', bitWidth);
 
         let buildInputWire = (idx) => {
@@ -29,7 +28,8 @@ class Multiplexer extends AbstractLogicModule {
             let inputWire = this.addInputWire('in' + idx, bitWidth);
 
             inputWire.addListener(data => {
-                if (controlWire.data.value === idx) {
+                if (controlWire.data.value === idx &&
+                    !Binary.equals(data, outputWire.data)) {
                     outputWire.setData(data);
                 }
             });
@@ -40,7 +40,7 @@ class Multiplexer extends AbstractLogicModule {
         }
 
         // 控制线
-        let controlWire = this.addInputWire('control', controlWireDataWidth);
+        let controlWire = this.addInputWire('control', controlWireBitWidth);
 
         // 当控制信号改变时，重新传递相应源数据到输出线。
         controlWire.addListener(data => {
@@ -48,11 +48,15 @@ class Multiplexer extends AbstractLogicModule {
             let inputWire = this.inputWires[inputWireIdx];
 
             let outputData = inputWire.data;
-            outputWire.setData(outputData);
+            if (!Binary.equals(outputData, outputWire.data)){
+                outputWire.setData(outputData);
+            }
         });
     }
-}
 
-Multiplexer.className = 'multiplexer';
+    getModuleClassName() {
+        return 'multiplexer'; // 同目录名
+    }
+}
 
 module.exports = Multiplexer;

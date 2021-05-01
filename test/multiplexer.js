@@ -6,7 +6,10 @@ var assert = require('assert/strict');
 
 describe('Multiplexer Test', () => {
     it('Test control signal change', () => {
-        let m1 = new Multiplexer('multiplexer1', 4, 2);
+        let m1 = new Multiplexer('multiplexer1', {
+            bitWidth:4,
+            controlWireBitWidth: 2
+        });
 
         assert.equal(m1.inputWires.length, 4 + 1); // additional one control wire
 
@@ -45,7 +48,10 @@ describe('Multiplexer Test', () => {
     });
 
     it('Test input wire data change', () => {
-        let m1 = new Multiplexer('multiplexer1', 4, 2);
+        let m1 = new Multiplexer('multiplexer1', {
+            bitWidth:4,
+            controlWireBitWidth: 2
+        });
 
         let inputWire0 = m1.getInputWire('in0');
         let inputWire1 = m1.getInputWire('in1');

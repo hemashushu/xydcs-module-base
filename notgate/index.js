@@ -1,31 +1,31 @@
-const {AbstractLogicModule} = require('jslogiccircuit');
+const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+const {Binary} = require('jsbinary');
 
 /**
  * 逻辑非门
  */
-class NotGate extends AbstractLogicModule {
+class NotGate extends AbstractBaseLogicModule {
 
-    /**
-     *
-     * @param {*} name 模块名称
-     */
-    constructor(name) {
-        super(name);
+    constructor(name, parameters) {
+        super(name, parameters);
 
-        let outputWire = this.addOutputWire('out', 1);
-        let inputWire = this.addInputWire('in', 1);
+        // 模块参数
+        let bitWidth = parameters.bitWidth; // 数据宽度
+
+        let outputWire = this.addOutputWire('out', bitWidth);
+        let inputWire = this.addInputWire('in', bitWidth);
 
         inputWire.addListener(data => {
-            let value = data.getBit(0);
-            let result = value === 0 ? 1 : 0;
-
-            let outputData = outputWire.data;
-            outputData.setBit(0, result);
-            outputWire.setData(outputData);
+            let outputData = Binary.not(data);
+            if (!Binary.equals(outputData, outputWire.data)) {
+                outputWire.setData(outputData);
+            }
         });
     }
-}
 
-NotGate.className = 'notGate';
+    getModuleClassName() {
+        return 'notgate'; // 同目录名
+    }
+}
 
 module.exports = NotGate;

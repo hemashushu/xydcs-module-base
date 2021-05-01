@@ -1,0 +1,9 @@
+title: Wire Adapter
+title[zh_CN]: 连接线适配器
+description: Connect two wires with different bit widths.
+description[zh_CN]: 连接两条位宽不同的线
+iconFilename: icon.png
+defaultParameters:
+  bitWidth: 1
+  sourceBitWidth: 8
+  sourceBitOffset: 0

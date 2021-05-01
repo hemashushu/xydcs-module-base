@@ -6,7 +6,9 @@ var assert = require('assert/strict');
 
 describe('Combiner Test', () => {
     it('Base', () => {
-        let c1 = new Combiner('combiner1', [2,3,4]);
+        let c1 = new Combiner('combiner1', {
+            sourceBitWidths: [2,3,4]
+        });
 
         assert.equal(c1.inputWires.length, 3);
 

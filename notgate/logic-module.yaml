@@ -1,0 +1,8 @@
+title: Not Gate
+title[zh_CN]: 非门
+description: Logic "Not" Gate.
+description[zh_CN]: 逻辑 “非” 门。
+iconFilename: icon.png
+defaultParameters:
+  bitWidth: 1
+
