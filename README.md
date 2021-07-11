@@ -1,3 +1,3 @@
-# Yu Chip Emulator Base Logic Module
+# Yu Digital Circuit Emulator Module - Base
 
-模拟器基本逻辑模块，包括与门、非门、寄存器等基本逻辑模块。
+数字电路模拟器的最基本模块，诸如与门、非门、异或门等逻辑器件。

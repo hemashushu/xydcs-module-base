@@ -1,5 +1,5 @@
 {
-  "name": "ycemu-module-base",
+  "name": "yudce-module-base",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hemashushu/ycemu-module-base.git"
+    "url": "git+https://github.com/hemashushu/yudce-module-base.git"
   },
   "keywords": [
     "digital",
@@ -18,11 +18,12 @@
   "author": "Hippo Spark <hippospark@gmail.com> (https://twitter.com/hemashushu)",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "bugs": {
-    "url": "https://github.com/hemashushu/ycemu-module-base/issues"
+    "url": "https://github.com/hemashushu/yudce-module-base/issues"
   },
-  "homepage": "https://github.com/hemashushu/ycemu-module-base",
+  "homepage": "https://github.com/hemashushu/yudce-module-base",
   "devDependencies": {
-    "mocha": "^8.3.2"
+    "mocha": "^8.3.2",
+    "jslogiccircuitunittest":"github:hemashushu/jslogiccircuitunittest"
   },
   "dependencies": {
     "jsbinary": "github:hemashushu/jsbinary",
