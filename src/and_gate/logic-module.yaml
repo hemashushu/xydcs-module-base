@@ -1,0 +1,23 @@
+title: And Gate
+title[zh_CN]: 与门
+description: Logic "AND Gate"
+description[zh_CN]: 逻辑 “与门”
+group: "Logic"
+iconFilename: icon.png
+defaultParameters:
+  - name: inputPinCount
+    description: The count of input pins
+    value: 2
+    valueType: range
+    valueRange:
+      from: 2
+      to: 32
+  - name: bitWidth
+    description: The bit width of each pins
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32
+
+document: ""

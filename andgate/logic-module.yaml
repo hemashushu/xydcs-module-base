@@ -1,9 +1,0 @@
-title: And Gate
-title[zh_CN]: 与门
-description: Logic "And Gate"
-description[zh_CN]: 逻辑 “与门”
-iconFilename: icon.png
-defaultParameters:
-  bitWidth: 1
-  inputWireCount: 2
-

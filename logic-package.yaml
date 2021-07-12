@@ -1,14 +1,14 @@
 title: Base Logic Module
 title[zh_CN]: 基本逻辑模块
-description: Provide the base logic module, such as "And Gate", "Or Gate" and "Multiplexer" etc.
-description[zh_CN]: 提供基本的逻辑模块，诸如 “与门”，“或门” 以及 “多路复用器” 等。
+description: Provide the base logic module, such as "AND Gate" and "OR Gate" etc.
+description[zh_CN]: 提供基本的逻辑模块，诸如 “与门”，“或门” 等。
 iconFilename: icon.png
 dependencies: [] # 无依赖项
 modules:
-  - "adapter"
-  - "andgate"
-  - "combiner"
-  - "multiplexer"
-  - "notgate"
-  - "orgate"
-  - "register"
+  # - "adapter"
+  - "and_gate"
+  # - "combiner"
+  # - "multiplexer"
+  # - "notgate"
+  # - "orgate"
+  # - "register"

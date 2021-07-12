@@ -1,32 +1,32 @@
 {
-  "name": "yudce-module-base",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hemashushu/yudce-module-base.git"
-  },
-  "keywords": [
-    "digital",
-    "circuit",
-    "logic"
-  ],
-  "author": "Hippo Spark <hippospark@gmail.com> (https://twitter.com/hemashushu)",
-  "license": "SEE LICENSE IN <LICENSE.md>",
-  "bugs": {
-    "url": "https://github.com/hemashushu/yudce-module-base/issues"
-  },
-  "homepage": "https://github.com/hemashushu/yudce-module-base",
-  "devDependencies": {
-    "mocha": "^8.3.2",
-    "jslogiccircuitunittest":"github:hemashushu/jslogiccircuitunittest"
-  },
-  "dependencies": {
-    "jsbinary": "github:hemashushu/jsbinary",
-    "jslogiccircuit": "github:hemashushu/jslogiccircuit"
-  }
+    "name": "yudce_module_base",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hemashushu/yudce_module_base.git"
+    },
+    "keywords": [
+        "digital",
+        "circuit",
+        "logic"
+    ],
+    "author": "Hippo Spark <hippospark@gmail.com> (https://twitter.com/hemashushu)",
+    "license": "SEE LICENSE IN <LICENSE.md>",
+    "bugs": {
+        "url": "https://github.com/hemashushu/yudce_module_base/issues"
+    },
+    "homepage": "https://github.com/hemashushu/yudce_module_base",
+    "devDependencies": {
+        "jslogiccircuitunittest": "github:hemashushu/jslogiccircuitunittest"
+    },
+    "dependencies": {
+        "jsbinary": "github:hemashushu/jsbinary",
+        "jsexception": "github:hemashushu/jsexception",
+        "jslogiccircuit": "github:hemashushu/jslogiccircuit"
+    }
 }
