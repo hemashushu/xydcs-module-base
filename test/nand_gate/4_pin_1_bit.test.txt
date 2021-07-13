@@ -1,0 +1,15 @@
+---
+!title: 4 Pin 1 Bit
+inputPinCount: 4
+bitWidth: 1
+---
+        in0 in1 in2 in3 out
+for(i0,0,1)
+  for(i1,0,1)
+    for(i2,0,1)
+      for(i3,0,1)
+        i0  i1  i2  i3  (~(i0 & i1 & i2 & i3))
+      end
+    end
+  end
+end

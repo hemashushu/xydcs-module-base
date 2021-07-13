@@ -9,7 +9,6 @@ let packageName = path.basename(packageDirectory);
 let packageRepositoryDirectory = path.dirname(packageDirectory);
 
 async function testModule(packageName, moduleClassName) {
-    console.log('\n');
     console.log(`Testing module "${moduleClassName}"...`);
 
     let moduleUnitTestResult = await ModuleUnitTestController.testModule(
@@ -29,6 +28,8 @@ async function testModule(packageName, moduleClassName) {
                 `actual: 0b${testResult.actual.toBinaryString()}`);
         }
     }
+
+    console.log('');
 }
 
 async function testPackage() {
@@ -37,6 +38,8 @@ async function testPackage() {
     let packageItem = await LogicPackageLoader.loadLogicPackage(
         packageRepositoryDirectory,
         packageName);
+
+    console.log('');
 
     let moduleClassNames = packageItem.modules;
     for (let moduleClassName of moduleClassNames) {

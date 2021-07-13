@@ -1,0 +1,7 @@
+---
+!title: 1 Bit
+bitWidth: 1
+---
+in out
+0  1
+1  0

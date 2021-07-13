@@ -1,9 +1,0 @@
-title: Or Gate
-title[zh_CN]: 或门
-description: Logic "Or" Gate.
-description[zh_CN]: 逻辑 “或” 门。
-iconFilename: icon.png
-defaultParameters:
-  bitWidth: 1
-  inputWireCount: 2
-

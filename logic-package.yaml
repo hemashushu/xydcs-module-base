@@ -5,10 +5,14 @@ description[zh_CN]: 提供基本的逻辑模块，诸如 “与门”，“或�
 iconFilename: icon.png
 dependencies: [] # 无依赖项
 modules:
-  # - "adapter"
   - "and_gate"
+  - "or_gate"
+  - "not_gate"
+  - "nand_gate"
+  - "nor_gate"
+  - "xor_gate"
+  - "xnor_gate"
+  # - "adapter"
   # - "combiner"
   # - "multiplexer"
-  # - "notgate"
-  # - "orgate"
   # - "register"

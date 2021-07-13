@@ -1,0 +1,15 @@
+title: Not
+title[zh_CN]: 非门
+description: Logic NOT Gate
+description[zh_CN]: 逻辑非门
+group: "Logic"
+iconFilename: icon.png
+document: ""
+defaultParameters:
+  - name: bitWidth
+    description: The bit width of each pins
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

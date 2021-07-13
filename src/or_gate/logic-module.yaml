@@ -1,7 +1,7 @@
-title: And
-title[zh_CN]: 与门
-description: Logic AND Gate
-description[zh_CN]: 逻辑与门
+title: Or
+title[zh_CN]: 或门
+description: Logic OR Gate
+description[zh_CN]: 逻辑或门
 group: "Logic"
 iconFilename: icon.png
 document: ""

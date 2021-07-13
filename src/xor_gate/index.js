@@ -2,7 +2,7 @@ const { Binary } = require('jsbinary');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
-class AndGate extends AbstractBaseLogicModule {
+class XorGate extends AbstractBaseLogicModule {
 
     init() {
         // 模块参数
@@ -24,7 +24,7 @@ class AndGate extends AbstractBaseLogicModule {
     }
 
     getModuleClassName() {
-        return 'and_gate'; // 同目录名
+        return 'xor_gate'; // 同目录名
     }
 
     // override
@@ -33,13 +33,18 @@ class AndGate extends AbstractBaseLogicModule {
             return pin.getData();
         });
 
+        // 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
+        // out = (a xor b) xor c
+        //
+        // https://en.wikipedia.org/wiki/XOR_gate#More_than_two_inputs
+
         let resultData = datas[0];
         for (let idx = 1; idx < datas.length; idx++) {
-            resultData = Binary.and(resultData, datas[idx]);
+            resultData = Binary.xor(resultData, datas[idx]);
         }
 
         this.outputPins[0].setData(resultData);
     }
 }
 
-module.exports = AndGate;
+module.exports = XorGate;

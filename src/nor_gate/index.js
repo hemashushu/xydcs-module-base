@@ -2,7 +2,7 @@ const { Binary } = require('jsbinary');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
-class AndGate extends AbstractBaseLogicModule {
+class NorGate extends AbstractBaseLogicModule {
 
     init() {
         // 模块参数
@@ -24,7 +24,7 @@ class AndGate extends AbstractBaseLogicModule {
     }
 
     getModuleClassName() {
-        return 'and_gate'; // 同目录名
+        return 'nor_gate'; // 同目录名
     }
 
     // override
@@ -35,11 +35,12 @@ class AndGate extends AbstractBaseLogicModule {
 
         let resultData = datas[0];
         for (let idx = 1; idx < datas.length; idx++) {
-            resultData = Binary.and(resultData, datas[idx]);
+            resultData = Binary.or(resultData, datas[idx]);
         }
 
+        resultData = Binary.not(resultData);
         this.outputPins[0].setData(resultData);
     }
 }
 
-module.exports = AndGate;
+module.exports = NorGate;

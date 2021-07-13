@@ -1,0 +1,10 @@
+---
+!title: 2 Pin 1 Bit
+inputPinCount: 2
+bitWidth: 1
+---
+in0 in1 out
+0   0   1
+0   1   1
+1   0   1
+1   1   0

@@ -1,7 +1,7 @@
-title: And
-title[zh_CN]: 与门
-description: Logic AND Gate
-description[zh_CN]: 逻辑与门
+title: Nand
+title[zh_CN]: 与非门
+description: Logic NAND Gate
+description[zh_CN]: 逻辑与非门
 group: "Logic"
 iconFilename: icon.png
 document: ""

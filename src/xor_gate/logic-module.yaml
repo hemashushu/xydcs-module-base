@@ -1,7 +1,7 @@
-title: And
-title[zh_CN]: 与门
-description: Logic AND Gate
-description[zh_CN]: 逻辑与门
+title: Xor
+title[zh_CN]: 异或
+description: Logic XOR Gate
+description[zh_CN]: 逻辑异或门
 group: "Logic"
 iconFilename: icon.png
 document: ""
@@ -13,6 +13,8 @@ defaultParameters:
     valueRange:
       from: 2
       to: 8
+    # 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
+    # out = (a xor b) xor c
   - name: bitWidth
     description: The bit width of each pins
     value: 1

@@ -24,7 +24,7 @@ class AndGate extends AbstractBaseLogicModule {
     }
 
     getModuleClassName() {
-        return 'and_gate'; // 同目录名
+        return 'xnor_gate'; // 同目录名
     }
 
     // override
@@ -33,11 +33,21 @@ class AndGate extends AbstractBaseLogicModule {
             return pin.getData();
         });
 
+        // 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
+        // i = (a xor b) xor c
+        // 然后再取反
+        // out = not(i)
+        //
+        // 即，xnor 的运算结果为 xor 的运算的结果再 not 运算。
+        //
+        // https://en.wikipedia.org/wiki/XNOR_gate#More_than_two_inputs
+
         let resultData = datas[0];
         for (let idx = 1; idx < datas.length; idx++) {
-            resultData = Binary.and(resultData, datas[idx]);
+            resultData = Binary.xor(resultData, datas[idx]);
         }
 
+        resultData = Binary.not(resultData);
         this.outputPins[0].setData(resultData);
     }
 }
