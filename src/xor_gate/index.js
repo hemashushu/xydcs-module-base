@@ -1,4 +1,5 @@
 const { Binary } = require('jsbinary');
+const { Signal } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
@@ -28,9 +29,9 @@ class XorGate extends AbstractBaseLogicModule {
     }
 
     // override
-    updateModuleDataAndOutputPinsData() {
-        let datas = this.inputPins.map(pin => {
-            return pin.getData();
+    updateModuleStateAndOutputPinsSignal() {
+        let binaries = this.inputPins.map(pin => {
+            return pin.getSignal().getBinary();
         });
 
         // 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
@@ -38,12 +39,13 @@ class XorGate extends AbstractBaseLogicModule {
         //
         // https://en.wikipedia.org/wiki/XOR_gate#More_than_two_inputs
 
-        let resultData = datas[0];
-        for (let idx = 1; idx < datas.length; idx++) {
-            resultData = Binary.xor(resultData, datas[idx]);
+        let resultBinary = binaries[0];
+        for (let idx = 1; idx < binaries.length; idx++) {
+            resultBinary = Binary.xor(resultBinary, binaries[idx]);
         }
 
-        this.outputPins[0].setData(resultData);
+        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
+        this.outputPins[0].setSignal(resultSignal);
     }
 }
 

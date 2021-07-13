@@ -1,4 +1,5 @@
 const { Binary } = require('jsbinary');
+const { Signal } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
@@ -28,18 +29,20 @@ class NandGate extends AbstractBaseLogicModule {
     }
 
     // override
-    updateModuleDataAndOutputPinsData() {
-        let datas = this.inputPins.map(pin => {
-            return pin.getData();
+    updateModuleStateAndOutputPinsSignal() {
+        let binaries = this.inputPins.map(pin => {
+            return pin.getSignal().getBinary();
         });
 
-        let resultData = datas[0];
-        for (let idx = 1; idx < datas.length; idx++) {
-            resultData = Binary.and(resultData, datas[idx]);
+        let resultBinary = binaries[0];
+        for (let idx = 1; idx < binaries.length; idx++) {
+            resultBinary = Binary.and(resultBinary, binaries[idx]);
         }
 
-        resultData = Binary.not(resultData);
-        this.outputPins[0].setData(resultData);
+        resultBinary = Binary.not(resultBinary);
+
+        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
+        this.outputPins[0].setSignal(resultSignal);
     }
 }
 

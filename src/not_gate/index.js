@@ -1,4 +1,5 @@
 const { Binary } = require('jsbinary');
+const { Signal } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
@@ -20,9 +21,12 @@ class NotGate extends AbstractBaseLogicModule {
     }
 
     // override
-    updateModuleDataAndOutputPinsData() {
-        let resultData = Binary.not(this.inputPins[0].getData());
-        this.outputPins[0].setData(resultData);
+    updateModuleStateAndOutputPinsSignal() {
+        let binary = this.inputPins[0].getSignal().getBinary();
+        let resultBinary = Binary.not(binary);
+
+        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
+        this.outputPins[0].setSignal(resultSignal);
     }
 }
 
