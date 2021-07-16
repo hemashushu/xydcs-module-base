@@ -1,12 +1,7 @@
 const path = require('path');
 
-const { LogicPackageLoader } = require('jslogiccircuit');
+const { PackageRepositoryManager, LogicPackageLoader } = require('jslogiccircuit');
 const { ModuleUnitTestController } = require('jslogiccircuitunittest');
-
-let projectDirectory = __dirname;
-let packageDirectory = projectDirectory;
-let packageName = path.basename(packageDirectory);
-let packageRepositoryDirectory = path.dirname(packageDirectory);
 
 async function testModule(packageName, moduleClassName) {
     console.log(`Testing module "${moduleClassName}"...`);
@@ -32,11 +27,18 @@ async function testModule(packageName, moduleClassName) {
     console.log('');
 }
 
-async function testPackage() {
+async function testPackage(packageName) {
     console.log(`Loading package "${packageName}"...`);
 
+    let projectDirectory = __dirname;
+    let packageDirectory = projectDirectory;
+    let packageRepositoryDirectory = path.dirname(packageDirectory);
+
+    let packageRepositoryManager = new PackageRepositoryManager()
+    packageRepositoryManager.addRepositoryDirectory(packageRepositoryDirectory, false);
+
     let packageItem = await LogicPackageLoader.loadLogicPackage(
-        packageRepositoryDirectory,
+        packageRepositoryManager,
         packageName);
 
     console.log('');
@@ -47,4 +49,4 @@ async function testPackage() {
     }
 }
 
-testPackage();
+testPackage('yudce-module-base');

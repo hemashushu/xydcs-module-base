@@ -1,5 +1,5 @@
 const { Binary } = require('jsbinary');
-const { Signal } = require('jslogiccircuit');
+const { Signal, PinDirection } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
@@ -10,10 +10,10 @@ class NotGate extends AbstractBaseLogicModule {
         let bitWidth = this.getParameter('bitWidth'); // 数据宽度
 
         // 输出端口
-        this.addOutputPinByDetail('out', bitWidth);
+        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
         // 输入端口
-        this.addInputPinByDetail('in', bitWidth);
+        this.pinIn = this.addPin('in', bitWidth, PinDirection.input);
     }
 
     getModuleClassName() {
@@ -21,12 +21,12 @@ class NotGate extends AbstractBaseLogicModule {
     }
 
     // override
-    updateModuleStateAndOutputPinsSignal() {
-        let binary = this.inputPins[0].getSignal().getBinary();
+    updateModuleState() {
+        let binary = this.pinIn.getSignal().getBinary();
         let resultBinary = Binary.not(binary);
 
-        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
-        this.outputPins[0].setSignal(resultSignal);
+        let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
+        this.pinOut.setSignal(resultSignal);
     }
 }
 

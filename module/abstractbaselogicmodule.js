@@ -12,7 +12,7 @@ class AbstractBaseLogicModule extends AbstractLogicModule {
     }
 
     getPackageName() {
-        return 'yudce_module_base'; // 同 NPM 包名
+        return 'yudce-module-base'; // 同 NPM 包名
     }
 }
 

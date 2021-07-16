@@ -1,9 +1,9 @@
 const { Binary } = require('jsbinary');
-const { Signal } = require('jslogiccircuit');
+const { Signal, PinDirection } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
-class NandGate extends AbstractBaseLogicModule {
+class OrGate extends AbstractBaseLogicModule {
 
     init() {
         // 模块参数
@@ -11,11 +11,11 @@ class NandGate extends AbstractBaseLogicModule {
         let bitWidth = this.getParameter('bitWidth'); // 数据宽度
 
         // 输出端口
-        this.addOutputPinByDetail('out', bitWidth);
+        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
         // 输入端口的名称分别为 in0, in1, ... inN
         let createInputPin = (idx) => {
-            this.addInputPinByDetail('in' + idx, bitWidth);
+            this.addPin('in' + idx, bitWidth, PinDirection.input);
         };
 
         // 输入端口
@@ -25,25 +25,23 @@ class NandGate extends AbstractBaseLogicModule {
     }
 
     getModuleClassName() {
-        return 'nand_gate'; // 同目录名
+        return 'or_gate'; // 同目录名
     }
 
     // override
-    updateModuleStateAndOutputPinsSignal() {
+    updateModuleState() {
         let binaries = this.inputPins.map(pin => {
             return pin.getSignal().getBinary();
         });
 
         let resultBinary = binaries[0];
         for (let idx = 1; idx < binaries.length; idx++) {
-            resultBinary = Binary.and(resultBinary, binaries[idx]);
+            resultBinary = Binary.or(resultBinary, binaries[idx]);
         }
 
-        resultBinary = Binary.not(resultBinary);
-
-        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
-        this.outputPins[0].setSignal(resultSignal);
+        let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
+        this.pinOut.setSignal(resultSignal);
     }
 }
 
-module.exports = NandGate;
+module.exports = OrGate;

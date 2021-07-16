@@ -1,5 +1,5 @@
 const { Binary } = require('jsbinary');
-const { Signal } = require('jslogiccircuit');
+const { Signal, PinDirection } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
@@ -30,7 +30,7 @@ class LookupTable extends AbstractBaseLogicModule {
     }
 
     // override
-    updateModuleStateAndOutputPinsSignal() {
+    updateModuleState() {
 //         let datas = this.inputPins.map(pin => {
 //             return pin.getData();
 //         });

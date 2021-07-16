@@ -1,9 +1,9 @@
 const { Binary } = require('jsbinary');
-const { Signal } = require('jslogiccircuit');
+const { Signal, PinDirection } = require('jslogiccircuit');
 
 const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
 
-class AndGate extends AbstractBaseLogicModule {
+class XorGate extends AbstractBaseLogicModule {
 
     init() {
         // 模块参数
@@ -11,11 +11,11 @@ class AndGate extends AbstractBaseLogicModule {
         let bitWidth = this.getParameter('bitWidth'); // 数据宽度
 
         // 输出端口
-        this.addOutputPinByDetail('out', bitWidth);
+        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
         // 输入端口的名称分别为 in0, in1, ... inN
         let createInputPin = (idx) => {
-            this.addInputPinByDetail('in' + idx, bitWidth);
+            this.addPin('in' + idx, bitWidth, PinDirection.input);
         };
 
         // 输入端口
@@ -25,23 +25,28 @@ class AndGate extends AbstractBaseLogicModule {
     }
 
     getModuleClassName() {
-        return 'and_gate'; // 同目录名
+        return 'xor_gate'; // 同目录名
     }
 
     // override
-    updateModuleStateAndOutputPinsSignal() {
+    updateModuleState() {
         let binaries = this.inputPins.map(pin => {
             return pin.getSignal().getBinary();
         });
 
+        // 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
+        // out = (a xor b) xor c
+        //
+        // https://en.wikipedia.org/wiki/XOR_gate#More_than_two_inputs
+
         let resultBinary = binaries[0];
         for (let idx = 1; idx < binaries.length; idx++) {
-            resultBinary = Binary.and(resultBinary, binaries[idx]);
+            resultBinary = Binary.xor(resultBinary, binaries[idx]);
         }
 
-        let resultSignal = Signal.createWithoutHighZ(this.outputPins[0].bitWidth, resultBinary);
-        this.outputPins[0].setSignal(resultSignal);
+        let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
+        this.pinOut.setSignal(resultSignal);
     }
 }
 
-module.exports = AndGate;
+module.exports = XorGate;
