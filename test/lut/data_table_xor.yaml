@@ -1,0 +1,8 @@
+- address: 0b00
+  value: 0
+- address: 0b01
+  value: 1
+- address: 0b10
+  value: 1
+- address: 0b11
+  value: 0

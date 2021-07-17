@@ -26,6 +26,7 @@ class LookupTable extends AbstractBaseLogicModule {
         for (let dataRow of dataTable) {
             let address = Number(dataRow.address);
             let value = Number(dataRow.value);
+
             let binary = Binary.fromInt32(value, outputBitWidth);
             let signal = Signal.createWithoutHighZ(outputBitWidth, binary);
             rows[address] = signal;
@@ -38,7 +39,7 @@ class LookupTable extends AbstractBaseLogicModule {
 
         // 输入端口的名称分别为 in0, in1, ... inN
         let createInputPin = (idx) => {
-            this.addPin('in' + idx, outputBitWidth, PinDirection.input);
+            this.addPin('in' + idx, 1, PinDirection.input);
         };
 
         // 输入端口
@@ -53,7 +54,6 @@ class LookupTable extends AbstractBaseLogicModule {
 
     // override
     updateModuleState() {
-
         let address = 0;
         for (let idx = 0; idx < this.inputPins.length; idx++) {
             let inputPin = this.inputPins[idx];

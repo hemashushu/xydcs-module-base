@@ -1,0 +1,16 @@
+---
+!title: 8 Pin Input, 4 Bit Output
+inputPinCount: 8
+outputBitWidth: 4
+dataTable: object(file:data_table_4_bit_output.yaml)
+---
+{in7,in6,in5,in4,in3,in2,in1,in0} out
+0b00000000  0b0000
+0b00000001  0b0001
+0b00000010  0b0010
+0b00000100  0b0011
+0b00001000  0b0100
+0b00010000  0b0101
+0b00100000  0b0110
+0b01000000  0b0111
+0b10000000  0b1000

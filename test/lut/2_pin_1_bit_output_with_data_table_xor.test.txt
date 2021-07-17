@@ -1,0 +1,11 @@
+---
+!title: 2 Pin Input, 1 Bit Output, with data table XOR
+inputPinCount: 2
+outputBitWidth: 1
+dataTable: object(file:data_table_xor.yaml)
+---
+in0 in1 out
+0   0   0
+0   1   1
+1   0   1
+1   1   0

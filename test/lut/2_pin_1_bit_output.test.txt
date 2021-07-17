@@ -1,5 +1,5 @@
 ---
-!title: 2 Pin 1 Bit
+!title: 2 Pin Input, 1 Bit Output
 inputPinCount: 2
 outputBitWidth: 1
 ---
