@@ -4,16 +4,15 @@ description: Logic AND Gate
 description[zh_CN]: 逻辑与门
 group: "Logic"
 iconFilename: icon.png
-document: ""
 defaultParameters:
-  - name: inputPinCount
+  inputPinCount:
     description: The count of input pins
     value: 2
     valueType: range
     valueRange:
       from: 2
       to: 8
-  - name: bitWidth
+  bitWidth:
     description: The bit width of each pins
     value: 1
     valueType: range

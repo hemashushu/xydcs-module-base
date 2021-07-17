@@ -4,22 +4,15 @@ description: Logic XNOR Gate
 description[zh_CN]: 逻辑同或门
 group: "Logic"
 iconFilename: icon.png
-document: ""
 defaultParameters:
-  - name: inputPinCount
+  inputPinCount:
     description: The count of input pins
     value: 2
     valueType: range
     valueRange:
       from: 2
       to: 8
-    # 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
-    # i = (a xor b) xor c
-    # 然后再取反
-    # out = not(i)
-    #
-    # 即，xnor 的运算结果为 xor 的运算的结果再 not 运算。
-  - name: bitWidth
+  bitWidth:
     description: The bit width of each pins
     value: 1
     valueType: range

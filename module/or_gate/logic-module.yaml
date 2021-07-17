@@ -4,7 +4,6 @@ description: Logic OR Gate
 description[zh_CN]: 逻辑或门
 group: "Logic"
 iconFilename: icon.png
-document: ""
 defaultParameters:
   - name: inputPinCount
     description: The count of input pins

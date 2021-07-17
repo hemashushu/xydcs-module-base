@@ -4,18 +4,15 @@ description: Logic XOR Gate
 description[zh_CN]: 逻辑异或门
 group: "Logic"
 iconFilename: icon.png
-document: ""
 defaultParameters:
-  - name: inputPinCount
+  inputPinCount:
     description: The count of input pins
     value: 2
     valueType: range
     valueRange:
       from: 2
       to: 8
-    # 当输入端口大于 2 时，后续的输入端口会依次进行 xor 运算，即
-    # out = (a xor b) xor c
-  - name: bitWidth
+  bitWidth:
     description: The bit width of each pins
     value: 1
     valueType: range

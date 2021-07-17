@@ -2,38 +2,33 @@ title: Lookup Table
 title[zh_CN]: 查找表
 description: Lookup Table
 description[zh_CN]: 查找表
-group: "Logic"
+group: "Combinatorial"
 iconFilename: icon.png
-document: ""
 defaultParameters:
-  - name: inputPinCount
+  inputPinCount:
     description: The count of input pins
     value: 2
     valueType: range
     valueRange:
       from: 2
-      to: 8
-  - name: outputBitWidth
+      to: 16
+  outputBitWidth:
     description: The bit width of output pin
     value: 1
     valueType: range
     valueRange:
       from: 1
       to: 32
-  - name: dataTable
-    description: The data for lookup table
+  dataTable:
+    description: The data table for looking up
+    valueType: object
+    objectSourceType: config
     value:
       - address: 0b00
-        value: 0
+        value: 0x0
       - address: 0b01
-        value: 0
+        value: 0x0
       - address: 0b10
         value: 0
       - address: 0b11
         value: 1
-    valueType: object # 当 valueType 为 'object' 时，value 的值
-                      # 为一个对象，也可以是一个数组
-    # valueType 除了 range, option, object 之外，还可以是
-    # 'file'，当 valueType 为 'file' 时，value 的值为一个
-    # 文件路径名，一个相对于项目目录（当前逻辑包目录）的
-    # 相对路径。

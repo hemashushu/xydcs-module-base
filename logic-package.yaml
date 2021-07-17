@@ -12,7 +12,7 @@ modules:
   - "nor_gate"
   - "xor_gate"
   - "xnor_gate"
-  # - "adapter"
+  - "lut"
   # - "combiner"
   # - "multiplexer"
   # - "register"
