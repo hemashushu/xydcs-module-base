@@ -24,10 +24,6 @@ class AndGate extends AbstractBaseLogicModule {
         }
     }
 
-    getModuleClassName() {
-        return 'and_gate'; // 同目录名
-    }
-
     // override
     updateModuleState() {
         let binaries = this.inputPins.map(pin => {

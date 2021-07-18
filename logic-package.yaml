@@ -4,15 +4,3 @@ description: Provide the base logic module, such as "AND Gate" and "OR Gate" etc
 description[zh_CN]: 提供基本的逻辑模块，诸如 “与门”，“或门” 等。
 iconFilename: icon.png
 dependencies: [] # 无依赖项
-modules:
-  - "and_gate"
-  - "or_gate"
-  - "not_gate"
-  - "nand_gate"
-  - "nor_gate"
-  - "xor_gate"
-  - "xnor_gate"
-  - "lut"
-  # - "combiner"
-  # - "multiplexer"
-  # - "register"

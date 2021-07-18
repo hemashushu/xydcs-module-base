@@ -24,10 +24,6 @@ class XorGate extends AbstractBaseLogicModule {
         }
     }
 
-    getModuleClassName() {
-        return 'xor_gate'; // 同目录名
-    }
-
     // override
     updateModuleState() {
         let binaries = this.inputPins.map(pin => {

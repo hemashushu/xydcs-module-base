@@ -24,10 +24,6 @@ class NandGate extends AbstractBaseLogicModule {
         }
     }
 
-    getModuleClassName() {
-        return 'nand_gate'; // 同目录名
-    }
-
     // override
     updateModuleState() {
         let binaries = this.inputPins.map(pin => {

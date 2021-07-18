@@ -16,10 +16,6 @@ class NotGate extends AbstractBaseLogicModule {
         this.pinIn = this.addPin('in', bitWidth, PinDirection.input);
     }
 
-    getModuleClassName() {
-        return 'not_gate'; // 同目录名
-    }
-
     // override
     updateModuleState() {
         let binary = this.pinIn.getSignal().getBinary();

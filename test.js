@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { PackageRepositoryManager, LogicPackageLoader } = require('jslogiccircuit');
+const { PackageRepositoryManager, LogicPackageLoader, LogicModuleLoader } = require('jslogiccircuit');
 const { ModuleUnitTestController } = require('jslogiccircuitunittest');
 
 async function testModule(packageName, moduleClassName) {
@@ -37,15 +37,15 @@ async function testPackage(packageName) {
     let packageRepositoryManager = new PackageRepositoryManager()
     packageRepositoryManager.addRepositoryDirectory(packageRepositoryDirectory, false);
 
-    let packageItem = await LogicPackageLoader.loadLogicPackage(
+    await LogicPackageLoader.loadLogicPackage(
         packageRepositoryManager,
         packageName);
 
     console.log('');
 
-    let moduleClassNames = packageItem.modules;
-    for (let moduleClassName of moduleClassNames) {
-        await testModule(packageName, moduleClassName);
+    let logicModuleItems = LogicModuleLoader.getLogicModuleItemsByPackageName(packageName);
+    for (let logicModuleItem of logicModuleItems) {
+        await testModule(packageName, logicModuleItem.moduleClassName);
     }
 }
 

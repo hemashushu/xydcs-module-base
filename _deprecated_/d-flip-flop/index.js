@@ -42,11 +42,6 @@ class DFlipFlop extends AbstractBaseLogicModule {
             }
         });
     }
-
-    getModuleClassName() {
-        return 'd-flip-flop'; // 同目录名
-    }
-
 }
 
 module.exports = DFlipFlop;

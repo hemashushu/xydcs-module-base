@@ -53,10 +53,6 @@ class Multiplexer extends AbstractBaseLogicModule {
             }
         });
     }
-
-    getModuleClassName() {
-        return 'multiplexer'; // 同目录名
-    }
 }
 
 module.exports = Multiplexer;

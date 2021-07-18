@@ -48,10 +48,6 @@ class LookupTable extends AbstractBaseLogicModule {
         }
     }
 
-    getModuleClassName() {
-        return 'lut'; // 同目录名
-    }
-
     // override
     updateModuleState() {
         let address = 0;

@@ -28,10 +28,6 @@ class Adapter extends AbstractBaseLogicModule {
             }
         });
     }
-
-    getModuleClassName() {
-        return 'adapter'; // 同目录名
-    }
 }
 
 module.exports = Adapter;

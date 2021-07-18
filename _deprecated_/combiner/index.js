@@ -61,10 +61,6 @@ class Combiner extends AbstractBaseLogicModule {
             createInputWire(idx, targetBitOffset);
         }
     }
-
-    getModuleClassName() {
-        return 'combiner'; // 同目录名
-    }
 }
 
 module.exports = Combiner;
