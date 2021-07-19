@@ -1,10 +1,9 @@
 const { Binary } = require('jsbinary');
-const { Signal, PinDirection } = require('jslogiccircuit');
+const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
-const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+class NotGate extends SimpleLogicModule {
 
-class NotGate extends AbstractBaseLogicModule {
-
+    // override
     init() {
         // 模块参数
         let bitWidth = this.getParameter('bitWidth'); // 数据宽度

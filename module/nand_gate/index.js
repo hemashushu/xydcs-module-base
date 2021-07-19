@@ -1,10 +1,9 @@
 const { Binary } = require('jsbinary');
-const { Signal, PinDirection } = require('jslogiccircuit');
+const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
-const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+class NandGate extends SimpleLogicModule {
 
-class NandGate extends AbstractBaseLogicModule {
-
+    // override
     init() {
         // 模块参数
         let inputPinCount = this.getParameter('inputPinCount'); // 输入端口的数量

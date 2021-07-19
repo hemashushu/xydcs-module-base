@@ -1,10 +1,9 @@
 const { Binary } = require('jsbinary');
-const { Signal, PinDirection } = require('jslogiccircuit');
+const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
-const AbstractBaseLogicModule = require('../abstractbaselogicmodule');
+class LookupTable extends SimpleLogicModule {
 
-class LookupTable extends AbstractBaseLogicModule {
-
+    // override
     init() {
         // 模块参数
         let inputPinCount = this.getParameter('inputPinCount'); // 输入端口的数量
