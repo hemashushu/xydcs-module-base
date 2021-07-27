@@ -1,6 +1,10 @@
 const { Binary } = require('jsbinary');
 const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
+/**
+ * 查找表
+ * 根据输入的地址输出预设好的值。
+ */
 class LookupTable extends SimpleLogicModule {
 
     // override
@@ -36,14 +40,9 @@ class LookupTable extends SimpleLogicModule {
         // 输出端口
         this.pinOut = this.addPin('out', outputBitWidth, PinDirection.output);
 
-        // 输入端口的名称分别为 in0, in1, ... inN
-        let createInputPin = (idx) => {
-            this.addPin('in' + idx, 1, PinDirection.input);
-        };
-
-        // 输入端口
+        // 输入端口的名称分别为 in_0, in_1, ... in_N
         for (let idx = 0; idx < inputPinCount; idx++) {
-            createInputPin(idx);
+            this.addPin('in_' + idx, 1, PinDirection.input);
         }
     }
 

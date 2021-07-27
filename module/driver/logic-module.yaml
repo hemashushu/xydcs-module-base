@@ -1,0 +1,14 @@
+title: Driver
+title[zh_CN]: 驱动器
+description: Connect or disconnect the wire, when the selection signal is 0, the wire will be disconnected and the output pin will be in high z state.
+description[zh_CN]: 连接或断开导线，当选择信号为 0 时，导线将会断开，而且输出引脚将会变成高阻抗状态。
+group: "Wire"
+iconFilename: icon.png
+defaultParameters:
+  bitWidth:
+    description: The bit width of input pin
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

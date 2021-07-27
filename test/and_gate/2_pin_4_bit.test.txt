@@ -3,9 +3,9 @@
 inputPinCount: 2
 bitWidth: 4
 ---
-    in0  in1  out
+    in_0  in_1  out
 for(i,0,15)
   for(j,0,15)
-    i    j    (i & j)
+    i     j     (i & j)
   end
 end

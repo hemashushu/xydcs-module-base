@@ -1,0 +1,21 @@
+title: Parallel
+title[zh_CN]: 并联器
+description: Parallel connection of multiple wires to form a single wire. Used to implement multiple wire inputs.
+description[zh_CN]: 并联多条线路形成一条线路，用于实现多线路输入。
+iconFilename: icon.png
+group: "Wire"
+defaultParameters:
+  inputPinCount:
+    description: The count of input pins
+    value: 2
+    valueType: range
+    valueRange:
+      from: 2
+      to: 16
+  bitWidth:
+    description: The bit width of each pins
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

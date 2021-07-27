@@ -1,6 +1,9 @@
 const { Binary } = require('jsbinary');
 const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
+/**
+ * 与门
+ */
 class AndGate extends SimpleLogicModule {
 
     // override
@@ -12,29 +15,29 @@ class AndGate extends SimpleLogicModule {
         // 输出端口
         this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
-        // 输入端口的名称分别为 in0, in1, ... inN
-        let createInputPin = (idx) => {
-            this.addPin('in' + idx, bitWidth, PinDirection.input);
-        };
-
-        // 输入端口
+        // 输入端口的名称分别为 in_0, in_1, ... in_N
         for (let idx = 0; idx < inputPinCount; idx++) {
-            createInputPin(idx);
+            this.addPin('in_' + idx, bitWidth, PinDirection.input);
         }
     }
 
     // override
     updateModuleState() {
-        let binaries = this.inputPins.map(pin => {
-            return pin.getSignal().getBinary();
+        let states = this.inputPins.map(pin => {
+            return pin.getSignal().getState();
         });
 
-        let resultBinary = binaries[0];
-        for (let idx = 1; idx < binaries.length; idx++) {
-            resultBinary = Binary.and(resultBinary, binaries[idx]);
+        let state = states[0];
+        let resultBinary = Binary.and(state.binary, Binary.not(state.highZ));
+
+        for (let idx = 1; idx < states.length; idx++) {
+            state = states[idx];
+            let currentBinary = Binary.and(state.binary, Binary.not(state.highZ));
+            resultBinary = Binary.and(resultBinary, currentBinary);
         }
 
         let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
+
         this.pinOut.setSignal(resultSignal);
     }
 }

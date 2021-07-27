@@ -2,5 +2,5 @@
 !title: 4 Bit
 bitWidth: 4
 ---
-    in  out
-repeat(16,i) i (~i)
+             in  out
+repeat(16,i) i   (~i)

@@ -1,0 +1,12 @@
+---
+inputPinBitWidths: object(file:2_pin.yaml)
+---
+in_1   in_0  out
+0b000  0     0b0000
+0b111  1     0b1111
+
+for(a,0,7)
+  for(b,0,1)
+    a  b     (a*2+b)
+  end
+end

@@ -1,0 +1,6 @@
+---
+bitWidth: 1
+value: 1
+---
+out
+1

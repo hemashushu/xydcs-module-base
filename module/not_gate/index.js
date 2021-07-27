@@ -1,6 +1,9 @@
 const { Binary } = require('jsbinary');
 const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
+/**
+ * 非门
+ */
 class NotGate extends SimpleLogicModule {
 
     // override
@@ -17,8 +20,9 @@ class NotGate extends SimpleLogicModule {
 
     // override
     updateModuleState() {
-        let binary = this.pinIn.getSignal().getBinary();
-        let resultBinary = Binary.not(binary);
+        let state = this.pinIn.getSignal().getState();
+        let resultBinary = Binary.and(state.binary, Binary.not(state.highZ));
+        resultBinary = Binary.not(resultBinary);
 
         let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
         this.pinOut.setSignal(resultSignal);

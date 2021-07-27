@@ -1,0 +1,6 @@
+---
+inputPinBitWidths: object(file:3_pin.yaml)
+---
+in_2  in_1  in_0   out
+1     0b01  0b100  0b101100
+z     0b10  0b111  0bz10111

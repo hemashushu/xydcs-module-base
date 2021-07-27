@@ -1,0 +1,6 @@
+---
+bitWidth: 4
+value: 0b1010
+---
+out
+0b1010

@@ -1,0 +1,8 @@
+---
+inputBitWidth: 6
+outputPinBitRanges: object(file:3_pin.yaml)
+---
+in        out_2  out_1  out_0
+0b0000zz  0b000  0b0z   z
+0b10zz10  0b10z  0bz1   0
+0bzz0101  0bzz0  0b10   1

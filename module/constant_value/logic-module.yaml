@@ -1,0 +1,18 @@
+title: Constant value
+title[zh_CN]: 常数
+description: Pins with fixed value output
+description[zh_CN]: 输出固定值的引脚
+group: "Wire"
+iconFilename: icon.png
+defaultParameters:
+  value:
+    description: The value of output pin
+    value: 1
+    valueType: number
+  bitWidth:
+    description: The bit width of output pin
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

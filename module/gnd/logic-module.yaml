@@ -1,0 +1,14 @@
+title: Gnd
+title[zh_CN]: 接地
+description: Pin with low level output
+description[zh_CN]: 输出低电平的引脚
+group: "Wire"
+iconFilename: icon.png
+defaultParameters:
+  bitWidth:
+    description: The bit width of output pin
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

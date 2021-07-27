@@ -1,0 +1,8 @@
+---
+bitWidth: 4
+---
+in      select  out
+0b1010  1       0b1010
+0b1010  0       0bzzzz
+0b01zz  1       0b01zz
+0b01zz  0       0bzzzz

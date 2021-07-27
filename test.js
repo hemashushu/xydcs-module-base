@@ -6,21 +6,37 @@ const { ModuleUnitTestController } = require('jslogiccircuitunittest');
 async function testModule(packageName, moduleClassName) {
     console.log(`Testing module "${moduleClassName}"...`);
 
-    let moduleUnitTestResult = await ModuleUnitTestController.testModule(
-        packageName, moduleClassName);
+    let moduleUnitTestResult;
+
+    try{
+        moduleUnitTestResult = await ModuleUnitTestController.testModule(
+            packageName, moduleClassName);
+
+    }catch(err) {
+        console.log('failed to run unit test, error: ' + err.message);
+        console.log('');
+        return;
+    }
 
     let unitTestResults = moduleUnitTestResult.unitTestResults;
     for (let unitTestResult of unitTestResults) {
-        let testResult = unitTestResult.testResult;
-        if (testResult.pass) {
+        let dataTestResult = unitTestResult.dataTestResult;
+        if (dataTestResult.pass) {
             console.log(`\t✅ ${unitTestResult.title}`);
+        } else if (dataTestResult.exception) {
+            console.log(`\t⛔ ${unitTestResult.title}`);
+            console.log(`\t   ${dataTestResult.exception.message}`);
+            // TODO::
+            // - 针对每一种错误类型进行解析
+            // - 针对 ScriptParseException 类型对其中的 ParseErrorDetail 的每一种 code 进行解析
+            console.log(dataTestResult.exception);
         } else {
             console.log(`\t⛔ ${unitTestResult.title}`);
             console.log(`\t   ` +
-                `Line: ${testResult.lineIdx + 1}, ` +
-                `port: "${testResult.portName}", ` +
-                `expect: 0b${testResult.expect.toBinaryString()}, ` +
-                `actual: 0b${testResult.actual.toBinaryString()}`);
+                `Line: ${dataTestResult.lineIdx + 1}, ` +
+                `port: "${dataTestResult.portName}", ` +
+                `expect: 0b${dataTestResult.expect.toBinaryString()}, ` +
+                `actual: 0b${dataTestResult.actual.toBinaryString()}`);
         }
     }
 

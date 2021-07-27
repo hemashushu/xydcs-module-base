@@ -1,0 +1,10 @@
+---
+bitWidth: 1
+inputPinCount: 2
+---
+in_1  in_0  out
+0     0     0
+1     1     1
+0     z     0
+1     z     1
+z     z     z

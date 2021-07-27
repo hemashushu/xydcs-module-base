@@ -1,0 +1,25 @@
+title: Splitter
+title[zh_CN]: 切分器
+description: Split the wire into multiple parts
+description[zh_CN]: 切分一条导线为多个部分
+group: "Wire"
+iconFilename: icon.png
+defaultParameters:
+  inputBitWidth:
+    description: The bit width of input pin
+    value: 8
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32
+  outputPinBitRanges:
+    description: Multiple parts of output
+    valueType: object
+    objectSourceType: config
+    value:
+      - from: 7   # out_2, 5 bits
+        to: 3     #
+      - from: 2   # out_1, 2 bits
+        to: 1     #
+      - from: 0   # out_0, 1 bits
+        to: 0     #

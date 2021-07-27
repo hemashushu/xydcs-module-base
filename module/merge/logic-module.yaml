@@ -1,0 +1,16 @@
+title: Merge
+title[zh_CN]: 合并器
+description: Bundle multiple wires into one
+description[zh_CN]: 将多条导线捆绑为一条
+group: "Wire"
+iconFilename: icon.png
+defaultParameters:
+  inputPinBitWidths:
+    description: Bit width of each input pin
+    description[zh_CN]: 每个输入引脚的位宽
+    valueType: object
+    objectSourceType: config
+    value:
+      - 5 # in_2
+      - 2 # in_1
+      - 1 # in_0

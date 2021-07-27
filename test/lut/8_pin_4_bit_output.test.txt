@@ -4,7 +4,7 @@ inputPinCount: 8
 outputBitWidth: 4
 dataTable: object(file:data_table_4_bit_output.yaml)
 ---
-{in7,in6,in5,in4,in3,in2,in1,in0} out
+{in_7,in_6,in_5,in_4,in_3,in_2,in_1,in_0}  out
 0b00000000  0b0000
 0b00000001  0b0001
 0b00000010  0b0010

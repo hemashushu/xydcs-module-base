@@ -4,8 +4,8 @@ inputPinCount: 2
 outputBitWidth: 1
 dataTable: object(file:data_table_xor.yaml)
 ---
-in0 in1 out
-0   0   0
-0   1   1
-1   0   1
-1   1   0
+in_0  in_1  out
+0     0     0
+0     1     1
+1     0     1
+1     1     0

@@ -1,0 +1,10 @@
+---
+bitWidth: 4
+inputPinCount: 4
+---
+in_0    in_1    in_2    in_3    out
+0b0000  0b0000  0b0000  0b0000  0b0000
+0b1111  0bzzzz  0b1111  0bzzzz  0b1111
+0b1010  0bzzzz  0bzzzz  0bzzzz  0b1010
+0b01zz  0bzzzz  0bzzzz  0bzz10  0b0110
+0b0zzz  0bz1zz  0bzz0z  0bzzz1  0b0101
