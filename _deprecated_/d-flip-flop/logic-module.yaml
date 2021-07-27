@@ -1,9 +1,0 @@
-title: D Flip-Flop
-title[zh_CN]: D 触发器
-description: Logic D Flip-Flop.
-description[zh_CN]: 逻辑 D 触发器。
-iconFilename: icon.png
-defaultParameters:
-  bitWidth: 1
-  inputWireCount: 2
-
