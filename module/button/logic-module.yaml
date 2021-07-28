@@ -5,13 +5,6 @@ description[zh_CN]: 按钮
 group: "IO"
 iconFilename: icon.png
 defaultParameters:
-  bitWidth:
-    description: The bit width of output pin
-    value: 1
-    valueType: range
-    valueRange:
-      from: 1
-      to: 8
   invertOutput:
     description: Invert the output signal
     value: false

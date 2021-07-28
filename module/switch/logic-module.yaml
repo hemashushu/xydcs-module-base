@@ -5,14 +5,10 @@ description[zh_CN]: 开关
 group: "IO"
 iconFilename: icon.png
 defaultParameters:
-  bitWidth:
-    description: The bit width of output pin
-    value: 1
-    valueType: range
-    valueRange:
-      from: 1
-      to: 8
   initialValue:
     description: The initial value
     value: 0
-    valueType: number
+    valueType: option
+    valueOptions:
+      - 0
+      - 1
