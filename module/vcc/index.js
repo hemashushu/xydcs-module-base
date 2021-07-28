@@ -8,19 +8,19 @@ class Vcc extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let bitWidth = this.getParameter('bitWidth'); // 数据宽度
+        // 数据宽度
+        this._bitWidth = this.getParameter('bitWidth');
 
         // 输出端口
-        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 创建输出信号
-        this.highSignal = Signal.createHigh(bitWidth);
+        this._signalHigh = Signal.createHigh(this._bitWidth);
     }
 
     // override
     updateModuleState() {
-        this.pinOut.setSignal(this.highSignal);
+        this._pinOut.setSignal(this._signalHigh);
     }
 }
 

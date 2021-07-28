@@ -8,16 +8,18 @@ class NandGate extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let inputPinCount = this.getParameter('inputPinCount'); // 输入端口的数量
-        let bitWidth = this.getParameter('bitWidth'); // 数据宽度
+        // 输入端口的数量
+        this._inputPinCount = this.getParameter('inputPinCount');
+
+        // 数据宽度
+        this._bitWidth = this.getParameter('bitWidth');
 
         // 输出端口
-        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 输入端口的名称分别为 in_0, in_1, ... in_N
-        for (let idx = 0; idx < inputPinCount; idx++) {
-            this.addPin('in_' + idx, bitWidth, PinDirection.input);
+        for (let idx = 0; idx < this._inputPinCount; idx++) {
+            this.addPin('in_' + idx, this._bitWidth, PinDirection.input);
         }
     }
 
@@ -28,18 +30,18 @@ class NandGate extends SimpleLogicModule {
         });
 
         let state = states[0];
-        let resultBinary = Binary.and(state.binary, Binary.not(state.highZ));
+        let levelResult = Binary.and(state.level, Binary.not(state.highZ));
 
         for (let idx = 1; idx < states.length; idx++) {
             state = states[idx];
-            let currentBinary = Binary.and(state.binary, Binary.not(state.highZ));
-            resultBinary = Binary.and(resultBinary, currentBinary);
+            let levelValid = Binary.and(state.level, Binary.not(state.highZ));
+            levelResult = Binary.and(levelResult, levelValid);
         }
 
-        resultBinary = Binary.not(resultBinary);
-        let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
+        levelResult = Binary.not(levelResult);
+        let signalResult = Signal.createWithoutHighZ(this._bitWidth, levelResult);
 
-        this.pinOut.setSignal(resultSignal);
+        this._pinOut.setSignal(signalResult);
     }
 }
 

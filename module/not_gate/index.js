@@ -8,24 +8,24 @@ class NotGate extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let bitWidth = this.getParameter('bitWidth'); // 数据宽度
+        // 数据宽度
+        this._bitWidth = this.getParameter('bitWidth');
 
         // 输出端口
-        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 输入端口
-        this.pinIn = this.addPin('in', bitWidth, PinDirection.input);
+        this._pinIn = this.addPin('in', this._bitWidth, PinDirection.input);
     }
 
     // override
     updateModuleState() {
-        let state = this.pinIn.getSignal().getState();
-        let resultBinary = Binary.and(state.binary, Binary.not(state.highZ));
-        resultBinary = Binary.not(resultBinary);
+        let state = this._pinIn.getSignal().getState();
+        let levelResult = Binary.and(state.level, Binary.not(state.highZ));
+        levelResult = Binary.not(levelResult);
 
-        let resultSignal = Signal.createWithoutHighZ(this.pinOut.bitWidth, resultBinary);
-        this.pinOut.setSignal(resultSignal);
+        let signalResult = Signal.createWithoutHighZ(this._bitWidth, levelResult);
+        this._pinOut.setSignal(signalResult);
     }
 }
 

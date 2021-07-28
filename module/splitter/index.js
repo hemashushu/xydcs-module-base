@@ -7,9 +7,12 @@ class Splitter extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let inputBitWidth = this.getParameter('inputBitWidth');
-        let outputPinBitRanges = this.getParameter('outputPinBitRanges'); // 切分情况 [{from, to}, {from, to}, ...]
+
+        // 输入端口的位宽
+        this._inputBitWidth = this.getParameter('inputBitWidth');
+
+        // 切分情况 [{from, to}, {from, to}, ...]
+        this._outputPinBitRanges = this.getParameter('outputPinBitRanges');
 
         // 反转数组以得到正确的端口名称的序号
         // 即，在配置文件中，
@@ -23,35 +26,33 @@ class Splitter extends SimpleLogicModule {
         //   to: 1     #
         // - from: 0   # out_0, 1 bits
         //   to: 0     #
-        outputPinBitRanges.reverse();
+        this._outputPinBitRanges.reverse();
 
         // 输入端口
-        this.pinIn = this.addPin('in', inputBitWidth, PinDirection.input);
+        this._pinIn = this.addPin('in', this._inputBitWidth, PinDirection.input);
 
         // 输出端口的名称分别为 out_0, out_1, ... out_N
-        for (let idx = 0; idx < outputPinBitRanges.length; idx++) {
-            let bitRange = outputPinBitRanges[idx];
+        for (let idx = 0; idx < this._outputPinBitRanges.length; idx++) {
+            let bitRange = this._outputPinBitRanges[idx];
             let outputBitWidth = bitRange.from - bitRange.to + 1;
             this.addPin('out_' + idx, outputBitWidth, PinDirection.output);
         }
-
-        this.outputPinBitRanges = outputPinBitRanges;
     }
 
     // override
     updateModuleState() {
         let outputPins = this.getOutputPins();
-        let { binary, highZ } = this.pinIn.getSignal().getState();
+        let { level, highZ } = this._pinIn.getSignal().getState();
 
-        for (let idx = 0; idx < this.outputPinBitRanges.length; idx++) {
-            let bitRange = this.outputPinBitRanges[idx];
+        for (let idx = 0; idx < this._outputPinBitRanges.length; idx++) {
+            let bitRange = this._outputPinBitRanges[idx];
             let outputBitWidth = bitRange.from - bitRange.to + 1;
 
-            let partBinary = binary.slice(bitRange.to, outputBitWidth);
-            let partHighZ = highZ.slice(bitRange.to, outputBitWidth);
-            let outputSignal = Signal.create(outputBitWidth, partBinary, partHighZ);
+            let levelPart = level.slice(bitRange.to, outputBitWidth);
+            let highZPart = highZ.slice(bitRange.to, outputBitWidth);
+            let signalOut = Signal.create(outputBitWidth, levelPart, highZPart);
 
-            outputPins[idx].setSignal(outputSignal);
+            outputPins[idx].setSignal(signalOut);
         }
     }
 }

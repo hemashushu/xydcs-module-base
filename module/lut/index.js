@@ -9,9 +9,11 @@ class LookupTable extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let inputPinCount = this.getParameter('inputPinCount'); // 输入端口的数量
-        let outputBitWidth = this.getParameter('outputBitWidth'); // 输出数据宽度
+        // 输入端口的数量
+        this._inputPinCount = this.getParameter('inputPinCount');
+
+        // 输出数据宽度
+        this._outputBitWidth = this.getParameter('outputBitWidth');
 
         // dataTable 的结构为：
         // [{address: Number, value: Number},...]
@@ -24,24 +26,25 @@ class LookupTable extends SimpleLogicModule {
         // |     ... |     . |
         // |    1111 |     0 |
 
-        let rows = new Array(Math.pow(2, inputPinCount));
+        let signalRows = new Array(Math.pow(2, this._inputPinCount));
 
-        for (let dataRow of dataTable) {
-            let address = Number(dataRow.address);
-            let value = Number(dataRow.value);
+        for (let dataTableRow of dataTable) {
+            let address = Number(dataTableRow.address);
+            let value = Number(dataTableRow.value);
 
-            let binary = Binary.fromInt32(value, outputBitWidth);
-            let signal = Signal.createWithoutHighZ(outputBitWidth, binary);
-            rows[address] = signal;
+            let binary = Binary.fromInt32(value, this._outputBitWidth);
+            let signal = Signal.createWithoutHighZ(this._outputBitWidth, binary);
+            signalRows[address] = signal;
         }
 
-        this.rows = rows;
+        // 信号列表
+        this._signalRows = signalRows;
 
         // 输出端口
-        this.pinOut = this.addPin('out', outputBitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', this._outputBitWidth, PinDirection.output);
 
         // 输入端口的名称分别为 in_0, in_1, ... in_N
-        for (let idx = 0; idx < inputPinCount; idx++) {
+        for (let idx = 0; idx < this._inputPinCount; idx++) {
             this.addPin('in_' + idx, 1, PinDirection.input);
         }
     }
@@ -51,12 +54,12 @@ class LookupTable extends SimpleLogicModule {
         let address = 0;
         for (let idx = 0; idx < this.inputPins.length; idx++) {
             let inputPin = this.inputPins[idx];
-            let bitValue = inputPin.getSignal().getBinary().toInt32();
-            address += Math.pow(2, idx) * bitValue;
+            let levelInt32 = inputPin.getSignal().getLevel().toInt32(); // 0 or 1
+            address += Math.pow(2, idx) * levelInt32;
         }
 
-        let resultSignal = this.rows[address];
-        this.pinOut.setSignal(resultSignal);
+        let resultSignal = this._signalRows[address];
+        this._pinOut.setSignal(resultSignal);
     }
 }
 

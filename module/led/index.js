@@ -14,6 +14,8 @@ class LED extends SimpleLogicModule {
         this._bitWidth = this.getParameter('bitWidth');
 
         // 颜色
+        // 一个字符串数组，示例：
+        // ['#ff0000', '#00ff00']
         this._colors = this.getParameter('colors');
 
         // 输入端口

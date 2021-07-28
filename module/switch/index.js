@@ -10,22 +10,22 @@ class Switch extends InteractiveLogicModule {
 
     // override
     init() {
-        // 模块参数
-        this._bitWidth = this.getParameter('bitWidth'); // 数据宽度
+        // 数据宽度
+        this._bitWidth = this.getParameter('bitWidth');
 
         // 初始状态
         this._initialValue = this.getParameter('initialValue');
 
         // 输出端口
         this._pinOut = this.addPin('out', bitWidth, PinDirection.output);
+
+        this._signalInitial = Signal.createWithoutHighZ(this._bitWidth,
+            Binary.fromInt32(this._initialValue, this._bitWidth));
     }
 
     // override
     updateModuleState() {
-        let signal = Signal.createWithoutHighZ(this._bitWidth,
-            Binary.fromInt32(this._initialValue, this._bitWidth));
-
-        this._pinOut.setSignal(signal);
+        this._pinOut.setSignal(this._signalInitial);
     }
 }
 

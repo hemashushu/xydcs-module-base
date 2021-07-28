@@ -10,18 +10,18 @@ class Clock extends InteractiveLogicModule {
 
     // override
     init() {
-        // 模块参数
-        this.frequency = this.getParameter('frequency'); // 频率，单位 Hz
+        // 时钟频率，单位 Hz
+        this._frequency = this.getParameter('frequency');
 
         // 输出端口
-        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
-        this.lowSignal = Signal.createLow(1);
-        this.highSignal = Signal.createHigh(1);
+        this._signalLow = Signal.createLow(1);
+        this._signalHigh = Signal.createHigh(1);
     }
 
     getFrequency() {
-        return this.frequency;
+        return this._frequency;
     }
 
     setState(isHigh) {
@@ -32,10 +32,10 @@ class Clock extends InteractiveLogicModule {
 
     // override
     updateModuleState() {
-        if (this._isHigh){
-            this.pinOut.setSignal(this.highSignal);
-        }else {
-            this.pinOut.setSignal(this.lowSignal);
+        if (this._isHigh) {
+            this._pinOut.setSignal(this._signalHigh);
+        } else {
+            this._pinOut.setSignal(this._signalLow);
         }
     }
 }

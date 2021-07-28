@@ -9,21 +9,23 @@ class ConstantValue extends SimpleLogicModule {
 
     // override
     init() {
-        // 模块参数
-        let value = this.getParameter('value'); // 常数值
-        let bitWidth = this.getParameter('bitWidth'); // 数据宽度
+        // 常数值
+        this._value = this.getParameter('value');
+
+        // 数据宽度
+        this._bitWidth = this.getParameter('bitWidth');
 
         // 输出端口
-        this.pinOut = this.addPin('out', bitWidth, PinDirection.output);
+        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 创建输出信号
-        let constantBinary = Binary.fromInt32(value, bitWidth);
-        this.constantSignal = Signal.createWithoutHighZ(bitWidth, constantBinary);
+        let valueBinary = Binary.fromInt32(this._value, this._bitWidth);
+        this._signalValue = Signal.createWithoutHighZ(this._bitWidth, valueBinary);
     }
 
     // override
     updateModuleState() {
-        this.pinOut.setSignal(this.constantSignal);
+        this._pinOut.setSignal(this._signalValue);
     }
 }
 
