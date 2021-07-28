@@ -1,0 +1,22 @@
+title: LED
+title[zh_CN]: 发光二极管
+description: LED
+description[zh_CN]: 发光二极管
+group: "IO"
+iconFilename: icon.png
+defaultParameters:
+  bitWidth:
+    description: The bit width of input pin
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 8
+  colors:
+    description: The color of each LED
+    valueType: object
+    objectSourceType: config
+    value:
+      - "#ff0000"
+      - "#00ff00"
+      - "#0000ff"

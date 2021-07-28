@@ -1,0 +1,19 @@
+title: Clock
+title[zh_CN]: 时钟
+description: Clock
+description[zh_CN]: 时钟
+group: "IO"
+iconFilename: icon.png
+defaultParameters:
+  frequency:
+    description: The frequency or clock, the unit is Hz
+    value: 1
+    valueType: option
+    valueOptions:
+      - 1
+      - 2
+      - 5
+      - 10
+      - 20
+      - 50
+      - -1
