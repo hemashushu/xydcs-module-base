@@ -6,7 +6,7 @@ group: "Logic"
 iconFilename: icon.png
 defaultParameters:
   inputPinCount:
-    description: The count of input pins
+    description: The amount of input pins
     value: 2
     valueType: range
     valueRange:

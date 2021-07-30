@@ -2,6 +2,11 @@ const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
  * 切分器
+ * 将多位宽的线（可理解为捆绑在一起的一组线）分隔为多组（多条）线。
+ *
+ * 切分器也常用来将一条多位宽的线，转换为多条 1 位宽的线。
+ * 比如：
+ * 一条 4 bit width 的线 -> 4 条 1 bit width 的线。
  */
 class Splitter extends SimpleLogicModule {
 
@@ -41,7 +46,6 @@ class Splitter extends SimpleLogicModule {
 
     // override
     updateModuleState() {
-        let outputPins = this.getOutputPins();
         let { level, highZ } = this._pinIn.getSignal().getState();
 
         for (let idx = 0; idx < this._outputPinBitRanges.length; idx++) {
@@ -52,7 +56,7 @@ class Splitter extends SimpleLogicModule {
             let highZPart = highZ.slice(bitRange.to, outputBitWidth);
             let signalOut = Signal.create(outputBitWidth, levelPart, highZPart);
 
-            outputPins[idx].setSignal(signalOut);
+            this.outputPins[idx].setSignal(signalOut);
         }
     }
 }

@@ -3,7 +3,11 @@ const { Binary } = require('jsbinary');
 
 /**
  * 合并器
- * 将多条线路捆绑成一条
+ * 将多条（多组）线捆绑为一条多位宽的线
+ *
+ * 合并器也常用来将多条 1 位宽的线，转换为一条多位宽的线。
+ * 比如：
+ * 4 条 1 bit width 的线 -> 一条 4 bit width 的线。
  */
 class Merge extends SimpleLogicModule {
 
@@ -44,11 +48,10 @@ class Merge extends SimpleLogicModule {
         let levelOut = Binary.fromInt32(0, this._outputBitWidth);
         let highZOut = Binary.fromInt32(0, this._outputBitWidth);
 
-        let inputPins = this.getInputPins();
         let offset = 0;
 
-        for (let idx = 0; idx < inputPins.length; idx++) {
-            let inputPin = inputPins[idx];
+        for (let idx = 0; idx < this.inputPins.length; idx++) {
+            let inputPin = this.inputPins[idx];
             let { level, highZ } = inputPin.getSignal().getState();
 
             levelOut = levelOut.splice(offset, level);

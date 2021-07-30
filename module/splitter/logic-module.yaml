@@ -1,7 +1,7 @@
 title: Splitter
 title[zh_CN]: 切分器
-description: Split the wire into multiple parts
-description[zh_CN]: 切分一条导线为多个部分
+description: Split the multiple bit width wire into multiple parts
+description[zh_CN]: 将一条多位宽的导线分隔为多条导线
 group: "Wire"
 iconFilename: icon.png
 defaultParameters:

@@ -1,7 +1,7 @@
 title: Button
 title[zh_CN]: 按钮
-description: Button
-description[zh_CN]: 按钮
+description: Button, contains pull-up/pull-down resistor.
+description[zh_CN]: 按钮，自带上拉/下拉电阻。
 group: "IO"
 iconFilename: icon.png
 defaultParameters:

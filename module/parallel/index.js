@@ -30,8 +30,7 @@ class Parallel extends SimpleLogicModule {
 
     // override
     updateModuleState() {
-        let inputPins = this.getInputPins();
-        let firstPin = inputPins[0];
+        let firstPin = this.inputPins[0];
 
         let levelInt32Out;
         let highZInt32Out;
@@ -42,8 +41,8 @@ class Parallel extends SimpleLogicModule {
         let levelInt32Previous = signalPrevious.getLevel().toInt32();
         let highZInt32Previous = signalPrevious.getHighZ().toInt32();
 
-        for (let idx = 1; idx < inputPins.length; idx++) {
-            let signalNext = inputPins[idx].getSignal()
+        for (let idx = 1; idx < this.inputPins.length; idx++) {
+            let signalNext = this.inputPins[idx].getSignal()
             let levelInt32Next = signalNext.getLevel().toInt32();
             let highZInt32Next = signalNext.getHighZ().toInt32();
 
