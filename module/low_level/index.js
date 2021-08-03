@@ -1,10 +1,9 @@
 const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
- * 电源正极
- * 输出高电平的端口
+ * 低电平
  */
-class Vcc extends SimpleLogicModule {
+class LowLevel extends SimpleLogicModule {
 
     // override
     init() {
@@ -15,13 +14,13 @@ class Vcc extends SimpleLogicModule {
         this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 创建输出信号
-        this._signalHigh = Signal.createHigh(this._bitWidth);
+        this._signalLow = Signal.createLow(this._bitWidth);
     }
 
     // override
     updateModuleState() {
-        this._pinOut.setSignal(this._signalHigh);
+        this._pinOut.setSignal(this._signalLow);
     }
 }
 
-module.exports = Vcc;
+module.exports = LowLevel;

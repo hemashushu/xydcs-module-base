@@ -8,12 +8,13 @@ async function testModule(packageName, moduleClassName) {
 
     let moduleUnitTestResult;
 
-    try{
+    try {
         moduleUnitTestResult = await ModuleUnitTestController.testModule(
             packageName, moduleClassName);
 
-    }catch(err) {
+    } catch (err) {
         console.log('failed to run unit test, error: ' + err.message);
+        console.log(err);
         console.log('');
         return;
     }
@@ -60,6 +61,12 @@ async function testPackage(packageName) {
     console.log('');
 
     let logicModuleItems = LogicModuleLoader.getLogicModuleItemsByPackageName(packageName);
+
+    if (logicModuleItems === undefined) {
+        console.log('No logic module');
+        return;
+    }
+
     for (let logicModuleItem of logicModuleItems) {
         await testModule(packageName, logicModuleItem.moduleClassName);
     }

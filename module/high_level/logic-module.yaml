@@ -1,7 +1,7 @@
-title: Vcc
-title[zh_CN]: 电源正极
-description: Pin with high level output
-description[zh_CN]: 输出高电平的引脚
+title: High Level
+title[zh_CN]: 高电平
+description: High level output
+description[zh_CN]: 输出高电平
 group: "Wire"
 iconFilename: icon.png
 defaultParameters:

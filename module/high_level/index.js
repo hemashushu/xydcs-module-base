@@ -1,10 +1,9 @@
 const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
- * 接地
- * 输出低电平
+ * 高电平输出
  */
-class Gnd extends SimpleLogicModule {
+class HighLevel extends SimpleLogicModule {
 
     // override
     init() {
@@ -15,13 +14,13 @@ class Gnd extends SimpleLogicModule {
         this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
         // 创建输出信号
-        this._signalLow = Signal.createLow(this._bitWidth);
+        this._signalHigh = Signal.createHigh(this._bitWidth);
     }
 
     // override
     updateModuleState() {
-        this._pinOut.setSignal(this._signalLow);
+        this._pinOut.setSignal(this._signalHigh);
     }
 }
 
-module.exports = Gnd;
+module.exports = HighLevel;

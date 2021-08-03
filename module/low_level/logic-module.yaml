@@ -1,7 +1,7 @@
-title: Gnd
-title[zh_CN]: 接地
-description: Pin with low level output
-description[zh_CN]: 输出低电平的引脚
+title: Low Level
+title[zh_CN]: 低电平
+description: Low level output
+description[zh_CN]: 输出低电平
 group: "Wire"
 iconFilename: icon.png
 defaultParameters:
