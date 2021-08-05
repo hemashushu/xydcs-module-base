@@ -4,10 +4,13 @@ const { Binary } = require('jsbinary');
 /**
  * 并联器
  *
- * - 目前 Pin 只支持数据最宽 32 位
- * - 目前 Pin 只支持单线路输入，
- *   可以通过本模块（并联模块）来实现多条线路输入，并联模块
- *   会判断有无短路的情况，然后选择非高阻抗的输入信号作为输出信号。
+ * - 通过本模块可以实现多条线路信号同时输入，并输出有效的信号。
+ * - 一条线路的有效信号是指：
+ *     - 多条输入端信号都同时为低电平（0），或者同时为高电平（1）
+ *     - 多条输入端信号除了一条或部分是相同的电平，其余线路都是高阻抗（z）
+ * - 如果同一条线既有高电平，又有低电平信号，则被断定为短路，并抛出 ShortCircuitException 异常。
+ * - 目前 Pin 只支持数据最宽 32 位。
+ *
  */
 class Parallel extends SimpleLogicModule {
 
@@ -54,7 +57,8 @@ class Parallel extends SimpleLogicModule {
             let conflict = bothValid & diffV;
 
             if (conflict !== 0) {
-                throw new ShortCircuitException(undefined, [this]);
+                // 短路
+                throw new ShortCircuitException('Short circuit detected', [this]);
             }
 
             levelInt32Out = (levelInt32Previous & ~highZInt32Previous) | (levelInt32Next & ~highZInt32Next); // 将高阻抗当作低电平

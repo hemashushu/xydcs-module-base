@@ -60,14 +60,24 @@ async function testPackage(packageName) {
 
     console.log('');
 
-    let logicModuleItems = LogicModuleLoader.getLogicModuleItemsByPackageName(packageName);
+    let allLogicModuleItems = [];
 
-    if (logicModuleItems === undefined) {
+    let logicModuleItems = LogicModuleLoader.getLogicModuleItemsByPackageName(packageName, false);
+    if (logicModuleItems !== undefined) {
+        allLogicModuleItems.push(...logicModuleItems);
+    }
+
+    let simulationLogicModuleItems = LogicModuleLoader.getLogicModuleItemsByPackageName(packageName, true);
+    if (simulationLogicModuleItems !== undefined) {
+        allLogicModuleItems.push(...simulationLogicModuleItems);
+    }
+
+    if (allLogicModuleItems.length === 0) {
         console.log('No logic module');
         return;
     }
 
-    for (let logicModuleItem of logicModuleItems) {
+    for (let logicModuleItem of allLogicModuleItems) {
         await testModule(packageName, logicModuleItem.moduleClassName);
     }
 }

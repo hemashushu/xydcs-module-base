@@ -1,0 +1,7 @@
+---
+bitWidth: 4
+---
+in   out
+0b0  0b0000
+0b1  0b1111
+0bz  0bzzzz
