@@ -1,11 +1,21 @@
+const fsPromise = require('fs/promises');
 const path = require('path');
 
 const { PackageRepositoryManager, LogicPackageLoader, LogicModuleLoader } = require('jslogiccircuit');
 const { ModuleUnitTestController } = require('jslogiccircuitunittest');
 
+/**
+ * 测试指定模块的所有单元测试脚本。
+ *
+ * @param {*} packageName
+ * @param {*} moduleClassName
+ * @returns true/false，当模块的所有单元测试脚本都通过时返回 true，
+ *     否则返回 false。
+ */
 async function testModule(packageName, moduleClassName) {
     console.log(`Testing module "${moduleClassName}"...`);
 
+    let pass = true;
     let moduleUnitTestResult;
 
     try {
@@ -24,14 +34,18 @@ async function testModule(packageName, moduleClassName) {
         let dataTestResult = unitTestResult.dataTestResult;
         if (dataTestResult.pass) {
             console.log(`\t✅ ${unitTestResult.title}`);
+
         } else if (dataTestResult.exception) {
+            pass = false;
             console.log(`\t⛔ ${unitTestResult.title}`);
             console.log(`\t   ${dataTestResult.exception.message}`);
             // TODO::
             // - 针对每一种错误类型进行解析
             // - 针对 ScriptParseException 类型对其中的 ParseErrorDetail 的每一种 code 进行解析
             console.log(dataTestResult.exception);
+
         } else {
+            pass = false;
             console.log(`\t⛔ ${unitTestResult.title}`);
             console.log(`\t   ` +
                 `Line: ${dataTestResult.lineIdx + 1}, ` +
@@ -42,8 +56,16 @@ async function testModule(packageName, moduleClassName) {
     }
 
     console.log('');
+    return pass;
 }
 
+/**
+ * 测试指定逻辑包。
+ *
+ * @param {*} packageName
+ * @returns true/false，当逻辑包的所有模块的所有单元测试脚本都
+ *     通过时，返回 true，否则返回 false。
+ */
 async function testPackage(packageName) {
     console.log(`Loading package "${packageName}"...`);
 
@@ -77,9 +99,28 @@ async function testPackage(packageName) {
         return;
     }
 
+    let pass = true;
     for (let logicModuleItem of allLogicModuleItems) {
-        await testModule(packageName, logicModuleItem.moduleClassName);
+        let modulePass = await testModule(packageName, logicModuleItem.moduleClassName);
+        if (!modulePass) {
+            pass = false;
+        }
+    }
+
+    return pass;
+}
+
+async function test() {
+    let packageDirectory = __dirname;
+    let packageInfoFilePath = path.join(packageDirectory, 'package.json');
+    let textContent = await fsPromise.readFile(packageInfoFilePath, 'utf-8');
+    let packageInfo = JSON.parse(textContent);
+
+    let pass = await testPackage(packageInfo.name);
+
+    if (pass) {
+        console.log('🎉🎈 All module test pass 🎈🎉');
     }
 }
 
-testPackage('yudce-module-base');
+test();
