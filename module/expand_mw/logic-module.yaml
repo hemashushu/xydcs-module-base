@@ -1,0 +1,21 @@
+title: Expand (Multiple Wires)
+title[zh_CN]: 扩展器（多线路）
+description: Expand one wire into multiple wires in parallel.
+description[zh_CN]: 将一条线路并联地扩展为多条线路
+iconFilename: icon.png
+group: "Wire"
+defaultParameters:
+  outputPinCount:
+    description: The amount of output pins
+    value: 2
+    valueType: range
+    valueRange:
+      from: 2
+      to: 16
+  bitWidth:
+    description: The bit width of each pins
+    value: 1
+    valueType: range
+    valueRange:
+      from: 1
+      to: 32

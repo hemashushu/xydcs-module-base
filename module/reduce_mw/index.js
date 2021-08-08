@@ -1,18 +1,20 @@
-const { SimpleLogicModule, Signal, PinDirection, ShortCircuitException } = require('jslogiccircuit');
 const { Binary } = require('jsbinary');
+const { SimpleLogicModule, Signal, PinDirection, ShortCircuitException } = require('jslogiccircuit');
 
 /**
- * 并联器
+ * 多线路缩减器。
  *
- * - 通过本模块可以实现多条线路信号同时输入，并输出有效的信号。
- * - 一条线路的有效信号是指：
- *     - 多条输入端信号都同时为低电平（0），或者同时为高电平（1）
- *     - 多条输入端信号除了一条或部分是相同的电平，其余线路都是高阻抗（z）
+ * 将多条线路并联（parallel）形成一条线路。
+ *
+ * 本模块可以多条线路信号同时输入，并只输出有效信号。有效信号是指：
+ * - 多条输入端信号都同时为低电平（0），或者同时为高电平（1）
+ * - 多条输入端信号除了一条或部分是相同的电平，其余线路都是高阻抗（z）
  * - 如果同一条线既有高电平，又有低电平信号，则被断定为短路，并抛出 ShortCircuitException 异常。
- * - 目前 Pin 只支持数据最宽 32 位。
+ *
+ * 目前 Pin 只支持数据最宽 32 位。
  *
  */
-class Parallel extends SimpleLogicModule {
+class ReduceMultiWire extends SimpleLogicModule {
 
     // override
     init() {
@@ -78,4 +80,4 @@ class Parallel extends SimpleLogicModule {
 }
 
 
-module.exports = Parallel;
+module.exports = ReduceMultiWire;

@@ -1,5 +1,5 @@
-const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 const { Binary } = require('jsbinary');
+const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
  * 合并器
@@ -40,6 +40,7 @@ class Merge extends SimpleLogicModule {
             this.addPin('in_' + idx, inputBitWidth, PinDirection.input);
         }
 
+        // 输出端口
         this._pinOut = this.addPin('out', this._outputBitWidth, PinDirection.output);
     }
 

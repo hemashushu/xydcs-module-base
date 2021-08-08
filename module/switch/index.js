@@ -1,4 +1,3 @@
-const { Binary } = require('jsbinary');
 const { Signal, PinDirection, InteractiveLogicModule } = require('jslogiccircuit');
 
 /**
@@ -16,6 +15,7 @@ class Switch extends InteractiveLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
+        // 常量信号
         this._signalInitial = (this._initialValue === 1) ?
             Signal.createHigh(1) :
             Signal.createLow(1);

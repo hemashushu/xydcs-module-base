@@ -3,7 +3,7 @@ const { SimpleLogicModule, Signal, PinDirection, ShortCircuitException } = requi
 /**
  * 缩减器
  *
- * 将一条多位宽的线路缩减为 1 位宽的线路
+ * 将 1 条多位宽的线路缩减为 1 条 1 位宽的线路
  *
  * - 在多位宽中，如果有部分位是高电平，又有部分位是低电平信号，则
  *   被断定为短路，并抛出 ShortCircuitException 异常。
@@ -22,7 +22,7 @@ class Reduce extends SimpleLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', 1, PinDirection.output);
 
-        // 创建一些常量
+        // 常量信号
         this._signalLow = Signal.createLow(1);
         this._signalHigh = Signal.createHigh(1);
         this._signalHighZ = Signal.createHighZ(1);

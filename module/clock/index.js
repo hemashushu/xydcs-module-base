@@ -26,6 +26,7 @@ class Clock extends InteractiveLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', bitWidth, PinDirection.output);
 
+        // 常量信号
         this._signalLow = Signal.createLow(1);
         this._signalHigh = Signal.createHigh(1);
     }

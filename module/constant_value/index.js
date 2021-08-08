@@ -1,5 +1,5 @@
-const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 const { Binary } = require('jsbinary');
+const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
  * 常量
@@ -18,7 +18,7 @@ class ConstantValue extends SimpleLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
-        // 创建输出信号
+        // 常量信号
         let valueBinary = Binary.fromInt32(this._value, this._bitWidth);
         this._signalValue = Signal.createWithoutHighZ(this._bitWidth, valueBinary);
     }

@@ -14,13 +14,13 @@ class AndGate extends SimpleLogicModule {
         // 数据宽度
         this._bitWidth = this.getParameter('bitWidth');
 
-        // 输出端口
-        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
-
         // 输入端口的名称分别为 in_0, in_1, ... in_N
         for (let idx = 0; idx < this._inputPinCount; idx++) {
             this.addPin('in_' + idx, this._bitWidth, PinDirection.input);
         }
+
+        // 输出端口
+        this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
     }
 
     // override

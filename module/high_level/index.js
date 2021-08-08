@@ -13,7 +13,7 @@ class HighLevel extends SimpleLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
-        // 创建输出信号
+        // 常量信号
         this._signalHigh = Signal.createHigh(this._bitWidth);
     }
 

@@ -13,7 +13,7 @@ class LowLevel extends SimpleLogicModule {
         // 输出端口
         this._pinOut = this.addPin('out', this._bitWidth, PinDirection.output);
 
-        // 创建输出信号
+        // 常量信号
         this._signalLow = Signal.createLow(this._bitWidth);
     }
 
