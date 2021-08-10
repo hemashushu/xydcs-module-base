@@ -1,0 +1,14 @@
+title: Switch Group
+title[zh_CN]: 开关组
+description: Switch group
+description[zh_CN]: 开关组
+group: "IO"
+iconFilename: icon.png
+defaultParameters:
+  switchCount:
+    description: The number of switches
+    value: 4
+    valueType: range
+    valueRange:
+      from: 2
+      to: 32

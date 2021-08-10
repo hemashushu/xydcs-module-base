@@ -1,14 +1,14 @@
 title: Switch
 title[zh_CN]: 开关
-description: Switch, contains pull-up/pull-down resistor.
-description[zh_CN]: 开关，自带上拉/下拉电阻。
+description: Switch
+description[zh_CN]: 开关
 group: "IO"
 iconFilename: icon.png
-defaultParameters:
-  initialValue:
-    description: The initial value
-    value: 0
-    valueType: option
-    valueOptions:
-      - 0
-      - 1
+# defaultParameters:
+#   initialValue:
+#     description: The initial value
+#     value: 0
+#     valueType: option
+#     valueOptions:
+#       - 0
+#       - 1
