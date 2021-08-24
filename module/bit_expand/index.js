@@ -1,14 +1,14 @@
 const { SimpleLogicModule, Signal, PinDirection } = require('jslogiccircuit');
 
 /**
- * 扩展器
+ * 位扩展器
  *
  * 将 1 条 1 位宽的线路扩展为 1 条多位宽的线路。
  *
  * - 目前 Pin 只支持数据最宽 32 位。
  *
  */
-class Expand extends SimpleLogicModule {
+class BitExpand extends SimpleLogicModule {
 
     // override
     init() {
@@ -49,4 +49,4 @@ class Expand extends SimpleLogicModule {
 }
 
 
-module.exports = Expand;
+module.exports = BitExpand;

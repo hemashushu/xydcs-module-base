@@ -1,5 +1,5 @@
-title: Reduce
-title[zh_CN]: 缩减器
+title: Bit Reduce
+title[zh_CN]: 位缩减器
 description: Reduces a multiple bit width wire to a 1-bit width wire.
 description[zh_CN]: 将一条多位宽的线路缩减为 1 位宽的线路。
 iconFilename: icon.png

@@ -10,7 +10,7 @@ const { SimpleLogicModule, Signal, PinDirection, ShortCircuitException } = requi
  * - 目前 Pin 只支持数据最宽 32 位。
  *
  */
-class Reduce extends SimpleLogicModule {
+class BitReduce extends SimpleLogicModule {
 
     // override
     init() {
@@ -68,4 +68,4 @@ class Reduce extends SimpleLogicModule {
 }
 
 
-module.exports = Reduce;
+module.exports = BitReduce;

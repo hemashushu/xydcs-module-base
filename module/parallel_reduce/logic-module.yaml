@@ -1,5 +1,5 @@
-title: Reduce (Multiple Wires)
-title[zh_CN]: 缩减器（多线路）
+title: Parallel Reduce
+title[zh_CN]: 线路并联缩减器
 description: Parallel connection of multiple wires to form a single wire. Used to implement multiple wire inputs.
 description[zh_CN]: 并联多条线路形成一条线路，用于实现多线路输入。
 iconFilename: icon.png

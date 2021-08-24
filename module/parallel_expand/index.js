@@ -1,7 +1,7 @@
 const { SimpleLogicModule, PinDirection } = require('jslogiccircuit');
 
 /**
- * 扩展器（多线路）。
+ * 线路并联扩展器。
  *
  * 将一条线路并联地扩展为多条线路。每一条输出线路的信号都跟输入信号相同。
  * 实际上每一个输出引脚（Pin）本身就支持连接到多个输入引脚，这个逻辑模块更多是为了
@@ -10,7 +10,7 @@ const { SimpleLogicModule, PinDirection } = require('jslogiccircuit');
  * 目前 Pin 只支持数据最宽 32 位。
  *
  */
-class ReduceMultiWire extends SimpleLogicModule {
+class ParallelExpand extends SimpleLogicModule {
 
     // override
     init() {
@@ -39,4 +39,4 @@ class ReduceMultiWire extends SimpleLogicModule {
 }
 
 
-module.exports = ReduceMultiWire;
+module.exports = ParallelExpand;

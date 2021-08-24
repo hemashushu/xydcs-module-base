@@ -1,5 +1,5 @@
-title: Expand
-title[zh_CN]: 扩展器
+title: Bit Expand
+title[zh_CN]: 位扩展器
 description: Expands a 1-bit width wire into a multiple bit width wire.
 description[zh_CN]: 将一条 1 位宽的线路扩展为多为宽的线路。
 iconFilename: icon.png

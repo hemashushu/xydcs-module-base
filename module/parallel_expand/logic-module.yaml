@@ -1,5 +1,5 @@
-title: Expand (Multiple Wires)
-title[zh_CN]: 扩展器（多线路）
+title: Parallel Expand
+title[zh_CN]: 线路并联扩展器
 description: Expand one wire into multiple wires in parallel.
 description[zh_CN]: 将一条线路并联地扩展为多条线路
 iconFilename: icon.png

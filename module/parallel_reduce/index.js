@@ -14,7 +14,7 @@ const { SimpleLogicModule, Signal, PinDirection, ShortCircuitException } = requi
  * 目前 Pin 只支持数据最宽 32 位。
  *
  */
-class ReduceMultiWire extends SimpleLogicModule {
+class ParallelReduce extends SimpleLogicModule {
 
     // override
     init() {
@@ -80,4 +80,4 @@ class ReduceMultiWire extends SimpleLogicModule {
 }
 
 
-module.exports = ReduceMultiWire;
+module.exports = ParallelReduce;

@@ -3,7 +3,7 @@ const { Signal, PinDirection, SimpleLogicModule } = require('jslogiccircuit');
 
 /**
  * 合并器
- * 将多条（多组）线捆绑为一条多位宽的线
+ * 将多条（多组）线捆绑（bundle）为一条多位宽的线
  *
  * 合并器也常用来将多条 1 位宽的线，转换为一条多位宽的线。
  * 比如：
